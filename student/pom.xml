@@ -6,7 +6,7 @@
     <groupId>edu.pdx.cs410J</groupId>
     <version>Summer2020</version>
   </parent>
-  <groupId>edu.pdx.cs410J.srubey</groupId>
+  <groupId>edu.pdx.cs410J.scrubey</groupId>
   <artifactId>student</artifactId>
   <version>Summer2020</version>
   <packaging>jar</packaging>
@@ -36,7 +36,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>edu.pdx.cs410J.srubey.Student</mainClass>
+              <mainClass>edu.pdx.cs410J.scrubey.Student</mainClass>
             </manifest>
           </archive>
         </configuration>
