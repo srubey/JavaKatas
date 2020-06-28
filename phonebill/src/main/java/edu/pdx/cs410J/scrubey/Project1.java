@@ -60,8 +60,22 @@ public class Project1 {
   public static boolean chkPhoneArgs(ArrayList<String> argList){
     boolean pass = true;
 
+    //create set of acceptable digits 0-9
+    Set<Character> digits = new HashSet<>(){{
+      add('0');
+      add('1');
+      add('2');
+      add('3');
+      add('4');
+      add('5');
+      add('6');
+      add('7');
+      add('8');
+      add('9');
+    }};
+
     for(int i = 1; i < 3; ++i) {
-      if (!checkPhNumFormat(argList.get(i)))
+      if (!checkPhNumFormat(argList.get(i), digits))
         pass = false;
     }
 
@@ -69,13 +83,8 @@ public class Project1 {
   }
 
   //check for proper phone number format in 2nd and 3rd arguments
-  public static boolean checkPhNumFormat(String ph){
+  public static boolean checkPhNumFormat(String ph, Set digits){
     boolean pass = true;
-
-    //create set of acceptable digits 0-9
-    Set<Character> digits = new HashSet<>();
-    for(int i = 0; i < 10; ++i)
-      digits.add((char) i);
 
     //if phone number is not proper length
     if(ph.length() != 12)
