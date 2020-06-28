@@ -15,36 +15,22 @@ public class Project1 {
     PhoneCall call = new PhoneCall();  // Refer to one of Dave's classes so that we can be sure it is on the classpath
     boolean passErrChk = true;
 
-    //add CL args and options to appropriate list
-    for (String arg : args) {
-      if(arg.startsWith("-"))
-        CLopts.add(arg);
-      else
-        CLargs.add(arg);
-    }
+    //split CL args into arguments and options
+    CLargsToLists(args, CLargs, CLopts);
+
+    //print error message if incorrect number of CL arguments
+    passErrChk = chkNumberOfCLArgs(CLargs);
+    if(!passErrChk)
+      System.err.println("\nIncorrect number of command line arguments");
+
+    //check phone number formatting
+    passErrChk = chkPhNumberFormat(CLargs);
+    if(!passErrChk)
+      System.err.println("\nPhone number entered improperly");
 
     //sanity check
     System.out.print(CLargs);
     System.out.print(CLopts);
-
-    //print error message if incorrect number of CL arguments
-    if(CLargs.size() < 5) {
-      System.err.println("\nMissing command line arguments");
-      passErrChk = false;
-    }
-    if(CLargs.size() > 5) {
-      System.err.println("\nToo many command line arguments");
-      passErrChk = false;
-    }
-
-    //check for proper phone number format in 2nd and 3rd arguments
-    //if format incorrect, print error and exit program
-    for(int i = 1; i < 3; ++i) {
-      if (!checkPhNumFormat(CLargs.get(i))){
-        System.err.print("\nPhone number entered improperly");
-        passErrChk = false;
-      }
-    }
 
     if(!passErrChk)
       System.exit(1);
@@ -84,7 +70,35 @@ public class Project1 {
     return pass;
   }
 
-  public static void CLargsToLists(ArrayList CLargs, ArrayList CLopts){
-    
+  //add CL args and options to appropriate list
+  public static void CLargsToLists(String[] args, ArrayList arguments, ArrayList options){
+    for (String arg : args) {
+      if(arg.startsWith("-"))
+        options.add(arg);
+      else
+        arguments.add(arg);
+    }
+  }
+
+  //verify proper number of command line arguments
+  public static boolean chkNumberOfCLArgs(ArrayList argList){
+    boolean pass = true;
+
+    if(argList.size() != 5)
+      pass = false;
+
+    return pass;
+  }
+
+  //check for proper phone number format in 2nd and 3rd arguments
+  public static boolean chkPhNumberFormat(ArrayList<String> argList){
+    boolean pass = true;
+
+    for(int i = 1; i < 3; ++i) {
+      if (!checkPhNumFormat(argList.get(i)))
+        pass = false;
+    }
+
+    return pass;
   }
 }
