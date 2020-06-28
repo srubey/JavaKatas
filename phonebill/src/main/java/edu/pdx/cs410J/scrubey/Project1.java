@@ -24,7 +24,7 @@ public class Project1 {
       System.err.println("\nIncorrect number of command line arguments");
 
     //check phone number formatting
-    passErrChk = chkPhNumberFormat(CLargs);
+    passErrChk = chkPhoneArgs(CLargs);
     if(!passErrChk)
       System.err.println("\nPhone number entered improperly");
 
@@ -34,40 +34,6 @@ public class Project1 {
 
     if(!passErrChk)
       System.exit(1);
-  }
-
-  public static boolean checkPhNumFormat(String ph){
-    boolean pass = true;
-    Set<Character> digits = new HashSet<Character>(){{
-      add('0');
-      add('1');
-      add('2');
-      add('3');
-      add('4');
-      add('5');
-      add('6');
-      add('7');
-      add('8');
-      add('9');
-    }};
-
-    //if phone number is not proper length
-    if(ph.length() != 12)
-      pass = false;
-
-    //check that the dash '-' is in the appropriate places
-    if(pass && ((ph.charAt(3) != '-') || (ph.charAt(7) != '-')))
-      pass = false;
-
-    //if passing to this point and characters at non-dash positions aren't in range 0-9, return false
-    if(pass) {
-      for (int i = 0; i < 12; ++i) {
-        if (i != 3 && i != 7 && !digits.contains(ph.charAt(i)))
-          pass = false;
-      }
-    }
-
-    return pass;
   }
 
   //add CL args and options to appropriate list
@@ -90,13 +56,41 @@ public class Project1 {
     return pass;
   }
 
-  //check for proper phone number format in 2nd and 3rd arguments
-  public static boolean chkPhNumberFormat(ArrayList<String> argList){
+  //wrapper for checkPhNumFormat
+  public static boolean chkPhoneArgs(ArrayList<String> argList){
     boolean pass = true;
 
     for(int i = 1; i < 3; ++i) {
       if (!checkPhNumFormat(argList.get(i)))
         pass = false;
+    }
+
+    return pass;
+  }
+
+  //check for proper phone number format in 2nd and 3rd arguments
+  public static boolean checkPhNumFormat(String ph){
+    boolean pass = true;
+
+    //create set of acceptable digits 0-9
+    Set<Character> digits = new HashSet<>();
+    for(int i = 0; i < 10; ++i)
+      digits.add((char) i);
+
+    //if phone number is not proper length
+    if(ph.length() != 12)
+      pass = false;
+
+    //check that the dash '-' is in the appropriate places
+    if(pass && ((ph.charAt(3) != '-') || (ph.charAt(7) != '-')))
+      pass = false;
+
+    //if passing to this point and characters at non-dash positions aren't in range 0-9, return false
+    if(pass) {
+      for (int i = 0; i < 12; ++i) {
+        if (i != 3 && i != 7 && !digits.contains(ph.charAt(i)))
+          pass = false;
+      }
     }
 
     return pass;
