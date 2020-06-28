@@ -3,6 +3,9 @@ package edu.pdx.cs410J.scrubey;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 /**
  * The main class for the CS410J Phone Bill Project
@@ -23,10 +26,25 @@ public class Project1 {
     if(!passErrChk)
       System.err.println("\nIncorrect number of command line arguments");
 
+    //print error message if CL options contain errors
+    boolean optsOK = false;
+    if(CLopts.size() > 0){
+      optsOK = chkOptsForErrors(CLopts);
+    }
+    if(!optsOK)
+      System.out.print("\nError detected in command line option");
+
     //check phone number formatting
     passErrChk = chkPhoneArgs(CLargs);
     if(!passErrChk)
       System.err.println("\nPhone number entered improperly");
+
+    //print README if flag present; otherwise, print error message
+    if(readMeFlag(CLopts)) {
+      boolean found = openReadMe();
+      if (!found)
+        System.out.print("Could not connect to README file");
+    }
 
     //sanity check
     System.out.print(CLargs);
@@ -54,6 +72,19 @@ public class Project1 {
       pass = false;
 
     return pass;
+  }
+
+  //check whether option flags contain errors
+  public static boolean chkOptsForErrors(ArrayList options){
+    boolean flagsOK = false;
+
+    //check for misspelled/improper arguments
+    if((options.size() == 2) && (options.contains("-README") && (options.contains("-print"))))
+      flagsOK = true;
+    else if((options.size() == 1) && (options.contains("-README") || (options.contains("-print"))))
+      flagsOK = true;
+
+    return flagsOK;
   }
 
   //wrapper for checkPhNumFormat
@@ -103,5 +134,37 @@ public class Project1 {
     }
 
     return pass;
+  }
+
+  //see if README flag is present in CL options
+  public static boolean readMeFlag(ArrayList options){
+    boolean flagPresent = false;
+
+    if(options.contains("-README"))
+      flagPresent = true;
+
+    return flagPresent;
+  }
+
+  //open and print -README file
+  public static boolean openReadMe(){
+    Scanner readFile = null;
+    boolean found = true;
+
+    try {
+      readFile = new Scanner(new File("phonebill/src/main/resources/edu/pdx/cs410J/scrubey/README.txt"));
+    }
+    catch(FileNotFoundException e) {
+      found = false;
+    }
+
+    if(readFile.hasNext()){
+      String line = readFile.nextLine();
+      System.out.print(line);
+    }
+
+    System.out.print("\n");
+
+    return found;
   }
 }
