@@ -34,14 +34,15 @@ public class Project1Test {
 
   @Test
   public void testArgumentLists(){
-    String[] args = {"Scott Rubey", "123-456-7890", "098-765-4321", "test1", "test2", "-README", "-print"};
+    String[] args = {"Scott Rubey", "123-456-7890", "098-765-4321", "01/02/2020", "19:39",
+                    "1/2/20", "1:03", "-README", "-print"};
     ArrayList<String> arguments = new ArrayList<>();
     ArrayList<String> options = new ArrayList<>();
 
     Project1.CLargsToLists(args, arguments, options);
     assertThat(arguments, not(nullValue()));
     assertThat(options, not(nullValue()));
-    assert(arguments.size() == 5);
+    assert(arguments.size() == 7);
     assert(options.size() == 2);
     assert(arguments.get(1) == "123-456-7890");
     assert(!arguments.contains("123-456-7899"));
@@ -51,26 +52,26 @@ public class Project1Test {
 
   @Test
   public void testNumberOfArgs(){
-    ArrayList<String> fiveArgs = new ArrayList<>(Arrays.asList("Scott Rubey", "123-456-7890", "098-765-4321",
-                                                                "test1", "test2"));
-    ArrayList<String> fourArgs = new ArrayList<>(Arrays.asList("Scott Rubey", "123-456-7890", "098-765-4321",
-                                                                "test1"));
+    ArrayList<String> sevenArgs = new ArrayList<>(Arrays.asList("Scott Rubey", "123-456-7890", "098-765-4321",
+                                                              "01/02/2020", "19:39", "1/2/20", "1:03"));
     ArrayList<String> sixArgs = new ArrayList<>(Arrays.asList("Scott Rubey", "123-456-7890", "098-765-4321",
-                                                              "test1", "test2", "-README"));
+                                                               "19:39", "1/2/20", "1:03"));
+    ArrayList<String> eightArgs = new ArrayList<>(Arrays.asList("Scott Rubey", "123-456-7890", "098-765-4321",
+                                                              "01/02/2020", "19:39", "1/2/20", "1:03", "extra"));
 
-    assertThat(Project1.chkNumberOfCLArgs(fiveArgs), equalTo(true));
-    assertThat(Project1.chkNumberOfCLArgs(fourArgs), equalTo(false));
+    assertThat(Project1.chkNumberOfCLArgs(sevenArgs), equalTo(true));
     assertThat(Project1.chkNumberOfCLArgs(sixArgs), equalTo(false));
+    assertThat(Project1.chkNumberOfCLArgs(eightArgs), equalTo(false));
   }
 
   @Test
   public void testChkPhoneArgs(){
     ArrayList<String> good = new ArrayList<>(Arrays.asList("Scott Rubey", "123-456-7890", "098-765-4321",
-                                                              "test1", "test2"));
+                                                          "01/02/2020", "19:39", "1/2/20", "1:03"));
     ArrayList<String> badFirst = new ArrayList<>(Arrays.asList("Scott Rubey", "123-4567890", "098-765-4321",
-                                                              "test1", "test2"));
+                                                              "01/02/2020", "19:39", "1/2/20", "1:03"));
     ArrayList<String> badSecond = new ArrayList<>(Arrays.asList("Scott Rubey", "123-456-7890", "0980-765-4321",
-                                                              "test1", "test2"));
+                                                                "01/02/2020", "19:39", "1/2/20", "1:03"));
     assertThat(Project1.chkPhoneArgs(good), equalTo(true));
     assertThat(Project1.chkPhoneArgs(badFirst), equalTo(false));
     assertThat(Project1.chkPhoneArgs(badSecond), equalTo(false));

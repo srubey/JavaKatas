@@ -15,7 +15,7 @@ public class Project1 {
   public static void main(String[] args) {
     ArrayList<String> CLargs = new ArrayList<>();  //command line arguments list
     ArrayList<String> CLopts = new ArrayList<>();  //command line options list
-    PhoneCall call = new PhoneCall();  // Refer to one of Dave's classes so that we can be sure it is on the classpath
+    //PhoneCall call = new PhoneCall();  // Refer to one of Dave's classes so that we can be sure it is on the classpath
     boolean passErrChk = true;
 
     //split CL args into arguments and options
@@ -68,7 +68,7 @@ public class Project1 {
   public static boolean chkNumberOfCLArgs(ArrayList argList){
     boolean pass = true;
 
-    if(argList.size() != 5)
+    if(argList.size() != 7)
       pass = false;
 
     return pass;
@@ -152,7 +152,7 @@ public class Project1 {
     boolean found = true;
 
     try {
-      readFile = new Scanner(new File("phonebill/src/main/resources/edu/pdx/cs410J/scrubey/README.txt"));
+      readFile = new Scanner(new File("/Users/srubey/PortlandStateJavaSummer2020/phonebill/src/main/resources/edu/pdx/cs410J/scrubey/README.txt"));
     }
     catch(FileNotFoundException e) {
       found = false;
