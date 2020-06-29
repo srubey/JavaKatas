@@ -39,6 +39,11 @@ public class Project1 {
     if(!passErrChk)
       System.err.println("\nPhone number entered improperly");
 
+    //check date formatting
+    passErrChk = chkDateFormat(CLargs);
+    if(!passErrChk)
+      System.err.println("\nDate entered improperly");
+
     //print README if flag present; otherwise, print error message
     if(readMeFlag(CLopts)) {
       boolean found = openReadMe();
@@ -87,11 +92,8 @@ public class Project1 {
     return flagsOK;
   }
 
-  //wrapper for checkPhNumFormat
-  public static boolean chkPhoneArgs(ArrayList<String> argList){
-    boolean pass = true;
-
-    //create set of acceptable digits 0-9
+  //creates a set of acceptable digits 0 - 9 of type char
+  public static Set<Character> createDigitSet(){
     Set<Character> digits = new HashSet<>(){{
       add('0');
       add('1');
@@ -104,6 +106,16 @@ public class Project1 {
       add('8');
       add('9');
     }};
+
+    return digits;
+  }
+
+  //wrapper for checkPhNumFormat
+  public static boolean chkPhoneArgs(ArrayList<String> argList){
+    boolean pass = true;
+
+    //create set of acceptable digits 0-9
+    Set<Character> digits = createDigitSet();
 
     for(int i = 1; i < 3; ++i) {
       if (!checkPhNumFormat(argList.get(i), digits))
@@ -134,6 +146,27 @@ public class Project1 {
     }
 
     return pass;
+  }
+
+  //wrapper for chkDateArgs
+  public static boolean chkDateFormat(ArrayList arguments){
+    boolean pass = true;
+
+    //check the args at idx 3 and 5 for correct formatting
+    for(int i = 3; i < 6; i += 2){
+      pass = chkDateArgs(arguments);
+    }
+
+    return pass;
+  }
+
+  //checks for proper formatting of date arguments
+  public static boolean chkDateArgs(ArrayList arguments){
+    boolean pass = true;
+
+    
+
+    return false;
   }
 
   //see if README flag is present in CL options

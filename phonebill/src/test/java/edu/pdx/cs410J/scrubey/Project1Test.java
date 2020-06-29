@@ -65,6 +65,25 @@ public class Project1Test {
   }
 
   @Test
+  public void testDigitSet(){
+    Set<Character> digits = new HashSet<>(){{
+      add('0');
+      add('1');
+      add('2');
+      add('3');
+      add('4');
+      add('5');
+      add('6');
+      add('7');
+      add('8');
+      add('9');
+    }};
+
+    assertThat(Project1.createDigitSet(), not(nullValue()));
+    assertThat(Project1.createDigitSet(), equalTo(digits));
+  }
+
+  @Test
   public void testChkPhoneArgs(){
     ArrayList<String> good = new ArrayList<>(Arrays.asList("Scott Rubey", "123-456-7890", "098-765-4321",
                                                           "01/02/2020", "19:39", "1/2/20", "1:03"));
@@ -104,6 +123,22 @@ public class Project1Test {
     assertThat(Project1.checkPhNumFormat(tooLong, digits), equalTo(false));
     assertThat(Project1.checkPhNumFormat(tooShort, digits), equalTo(false));
     assertThat(Project1.checkPhNumFormat(wrongChar, digits), equalTo(false));
+  }
+
+  @Test
+  public void testDateFormatWrapper(){
+    ArrayList<String> good = new ArrayList<>(Arrays.asList("Scott Rubey", "123-456-7890", "098-765-4321",
+            "01/02/2020", "19:39", "1/2/20", "1:03"));
+
+    assertThat(Project1.chkDateFormat(good), equalTo(true));
+  }
+
+  @Test
+  public void testChkDateArgs(){
+    ArrayList<String> good = new ArrayList<>(Arrays.asList("Scott Rubey", "123-456-7890", "098-765-4321",
+            "01/02/2020", "19:39", "1/2/20", "1:03"));
+
+    assertThat(Project1.chkDateArgs(good), equalTo(true));
   }
 
   @Test
