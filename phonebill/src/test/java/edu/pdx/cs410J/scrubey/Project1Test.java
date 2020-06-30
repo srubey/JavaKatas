@@ -194,6 +194,33 @@ public class Project1Test {
   }
 
   @Test
+  public void testDayFormat(){
+    String good1 = "1/2/2020";
+    String good2 = "01/2/2020";
+    String good3 = "1/02/2020";
+    String good4 = "1/19/2020";
+    String good5 = "1/29/2020";
+    String good6 = "1/31/2020";
+    String good7 = "01/02/2020";
+    String bad1 = "1/32/2020";
+    String bad2 = "1/a2/2020";
+    String bad3 = "02/a9/2020";
+    String bad4 = "02/122/020";
+
+    assertThat(Project1.chkDayFormat(good1), equalTo(true));
+    assertThat(Project1.chkDayFormat(good2), equalTo(true));
+    assertThat(Project1.chkDayFormat(good3), equalTo(true));
+    assertThat(Project1.chkDayFormat(good4), equalTo(true));
+    assertThat(Project1.chkDayFormat(good5), equalTo(true));
+    assertThat(Project1.chkDayFormat(good6), equalTo(true));
+    assertThat(Project1.chkDayFormat(good7), equalTo(true));
+    assertThat(Project1.chkDayFormat(bad1), equalTo(false));
+    assertThat(Project1.chkDayFormat(bad2), equalTo(false));
+    assertThat(Project1.chkDayFormat(bad3), equalTo(false));
+    assertThat(Project1.chkDayFormat(bad4), equalTo(false));
+  }
+
+  @Test
   public void testIsReadMeFlagPresent(){
     ArrayList<String> present = new ArrayList<>(Arrays.asList("-print", "-README"));
     ArrayList<String> notPresent = new ArrayList<>(Arrays.asList("-print"));

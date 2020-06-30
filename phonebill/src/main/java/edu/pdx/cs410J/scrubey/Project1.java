@@ -43,9 +43,11 @@ public class Project1 {
     if(!passErrChk)
       System.err.println("\nDate entered improperly");
 
+    //check timestamp formatting
+
     //sanity check
-//    System.out.print(CLargs);
-//    System.out.print(CLopts);
+    //System.out.print(CLargs);
+    //System.out.print(CLopts);
 
     if(!passErrChk)
       System.exit(1);
@@ -191,22 +193,11 @@ public class Project1 {
     //verify any char that's not '/' is a digit
     pass = chkDateDigits(date);
 
-    //verify month if formatted properly
+    //verify month is formatted properly
     pass = chkMonthFormat(date);
 
-    //*****************************************
-
-    switch(firstPos) {
-      case 0:
-        pass = false;
-      case 1:
-        //if single-digit month, must be months 1 - 9
-        if(!(digits.contains(date.charAt(0)) && (date.charAt(0) != '0')))
-          pass = false;
-        //if the prior condition passes, the subsequent character must be a digit
-        if(!digits.contains(date.charAt(2)))
-          pass = false;
-    }
+    //verify day is formatted properly
+    pass = chkDayFormat(date);
 
     return pass;
   }
@@ -288,6 +279,76 @@ public class Project1 {
         }
         break;
     }
+
+    return pass;
+  }
+
+  //verify day is in proper format
+  public static boolean chkDayFormat(String date){
+    boolean pass = false;
+    Set<Character> digits = createDigitSet();
+    boolean oneDigitDay = false;
+    boolean twoDigitDay = false;
+    int firstPos = 0;
+    int secPos = 0;
+
+    //find the index of the first '/'
+    boolean found = false;
+    for(int i = 0; i < date.length(); ++i){
+      if(date.charAt(i) == '/' && found == false) {
+        firstPos = i;
+        found = true;
+      }
+    }
+
+    //find the index of the second '/'
+    for(int i = firstPos + 1; i < date.length(); ++i){
+      if(date.charAt(i) == '/')
+        secPos = i;
+    }
+
+    //find out whether it's a 1 or 2 digit day
+    int daySize = secPos - firstPos;
+    if(daySize == 2)
+      oneDigitDay = true;
+    else if(daySize == 3)
+      twoDigitDay = true;
+
+    //simple case: if 1 digit day and char is 1-9, ok
+    if(oneDigitDay){
+      if(digits.contains(date.charAt(firstPos + 1)) && date.charAt(firstPos + 1) != '0')
+        pass = true;
+    }
+
+    //harder case: if 2 digit day...cases explore first digit of the 2-digit day
+    else if(twoDigitDay) {
+      switch (date.charAt(firstPos + 1)) {
+        case '0':
+          if (digits.contains(date.charAt(firstPos + 2)) && date.charAt(firstPos + 2) != '0')
+            pass = true;
+          break;
+        case '1':
+          if(digits.contains(date.charAt(firstPos + 2)))
+            pass = true;
+          break;
+        case '2':
+          if(digits.contains(date.charAt(firstPos + 2)))
+            pass = true;
+          break;
+        case '3':
+          if(date.charAt(firstPos + 2) == '0' || date.charAt(firstPos + 2) == '1')
+            pass = true;
+          break;
+        default:
+          pass = false;
+      }
+    }
+    else
+      pass = false;
+
+    //final redundant check to verify the day is only 1 or 2 digits long
+    if(!oneDigitDay && !twoDigitDay)
+      pass = false;
 
     return pass;
   }
