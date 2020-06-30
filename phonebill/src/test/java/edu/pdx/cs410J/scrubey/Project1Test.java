@@ -2,6 +2,7 @@ package edu.pdx.cs410J.scrubey;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import edu.pdx.cs410J.AbstractPhoneBill;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -135,10 +136,61 @@ public class Project1Test {
 
   @Test
   public void testChkDateArgs(){
-    ArrayList<String> good = new ArrayList<>(Arrays.asList("Scott Rubey", "123-456-7890", "098-765-4321",
-            "01/02/2020", "19:39", "1/2/20", "1:03"));
+    String good = "01/02/2020";
 
     assertThat(Project1.chkDateArgs(good), equalTo(true));
+  }
+
+  @Test
+  public void testDateLength(){
+    String good1 = "1/2/2020";
+    String good2 = "01/2/2020";
+    String good3 = "01/02/2020";
+    String bad1 = "1/2/20";
+    String bad2 = "01/02/20203";
+
+    assertThat(Project1.chkDateLength(good1), equalTo(true));
+    assertThat(Project1.chkDateLength(good2), equalTo(true));
+    assertThat(Project1.chkDateLength(good3), equalTo(true));
+    assertThat(Project1.chkDateLength(bad1), equalTo(false));
+    assertThat(Project1.chkDateLength(bad2), equalTo(false));
+  }
+
+  @Test
+  public void testDateSlashes(){
+    String good = "01/02/2020";
+    String bad1 = "01/02/20/20";
+    String bad2 = "01/022020";
+
+    assertThat(Project1.chkDateSlashes(good), equalTo(true));
+    assertThat(Project1.chkDateSlashes(bad1), equalTo(false));
+    assertThat(Project1.chkDateSlashes(bad2), equalTo(false));
+  }
+
+  @Test
+  public void testDateDigits(){
+    String good = "01/02/2020";
+    String bad1 = "01/02/2i20";
+    String bad2 = "1/2/&020";
+
+    assertThat(Project1.chkDateDigits(good), equalTo(true));
+    assertThat(Project1.chkDateDigits(bad1), equalTo(false));
+    assertThat(Project1.chkDateDigits(bad2), equalTo(false));
+  }
+
+  @Test
+  public void testMonthFormat(){
+    String good1 = "1/02/2020";
+    String bad1 = "0/02/2020";
+    String good2 = "01/02/2020";
+    String bad2 = "21/02/2020";
+    String bad3 = "a/02/2020";
+
+    assertThat(Project1.chkMonthFormat(good1), equalTo(true));
+    assertThat(Project1.chkMonthFormat(bad1), equalTo(false));
+    assertThat(Project1.chkMonthFormat(good2), equalTo(true));
+    assertThat(Project1.chkMonthFormat(bad2), equalTo(false));
+    assertThat(Project1.chkMonthFormat(bad3), equalTo(false));
   }
 
   @Test
@@ -170,5 +222,16 @@ public class Project1Test {
     assertThat(Project1.chkOptsForErrors(twoOptsSecondBad), equalTo(false));
     assertThat(Project1.chkOptsForErrors(oneGoodOpt), equalTo(true));
     assertThat(Project1.chkOptsForErrors(oneBadOpt), equalTo(false));
+  }
+
+  @Test
+  public void testIsPrintFlagPresent(){
+    ArrayList<String> present = new ArrayList<>(Arrays.asList("-print", "-README"));
+    ArrayList<String> notPresent = new ArrayList<>(Arrays.asList("-README"));
+    ArrayList<String> empty = new ArrayList<>();
+
+    assertThat(Project1.printFlag(present), equalTo(true));
+    assertThat(Project1.printFlag(notPresent), equalTo(false));
+    assertThat(Project1.printFlag(empty), equalTo(false));
   }
 }
