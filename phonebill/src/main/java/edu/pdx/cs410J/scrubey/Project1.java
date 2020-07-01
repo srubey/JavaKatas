@@ -44,6 +44,9 @@ public class Project1 {
       System.err.println("\nDate entered improperly");
 
     //check timestamp formatting
+    passErrChk = chkTimeFormat(CLargs);
+    if(!passErrChk)
+      System.err.println("\nTime entered improperly");
 
     //sanity check
     //System.out.print(CLargs);
@@ -349,6 +352,138 @@ public class Project1 {
     //final redundant check to verify the day is only 1 or 2 digits long
     if(!oneDigitDay && !twoDigitDay)
       pass = false;
+
+    return pass;
+  }
+
+  //wrapper for chkTimeArgs
+  public static boolean chkTimeFormat(ArrayList<String> arguments){
+    boolean pass = true;
+
+    //check the args at idx 4 and 6 for correct formatting
+    for(int i = 4; i < 7; i += 2){
+      pass = chkTimeArgs(arguments.get(i));
+    }
+
+    return pass;
+  }
+
+  //check for proper timestamp formatting
+  public static boolean chkTimeArgs(String time){
+    boolean pass = true;
+    int colonPos = 0;
+
+    //make sure time is only 4 or 5 characters
+    if(!(time.length() == 4 || time.length() == 5))
+      pass = false;
+
+    //make sure there's only one ':'
+    if(pass) {
+      int count = 0;
+      for (int i = 0; i < time.length(); ++i) {
+        if (time.charAt(i) == ':') {
+          ++count;
+          colonPos = i;
+        }
+      }
+      if (count != 1)
+        pass = false;
+    }
+
+    if(pass)
+      pass = chkHoursFormat(time, colonPos);
+    if(pass)
+      pass = chkMinutesFormat(time, colonPos);
+
+    return pass;
+  }
+
+  //verify hours is in proper format
+  public static boolean chkHoursFormat(String time, int colonPos){
+    boolean pass = true;
+    Set<Character> digits = createDigitSet();
+    Set<Character> after20 = new HashSet<>(){{
+      add('0');
+      add('1');
+      add('2');
+      add('3');
+    }};
+
+    //verify hours is formatted properly
+    //start with single digit
+    if(colonPos == 1){
+      if(!digits.contains(time.charAt(0)))
+        pass = false;
+    }
+      //verify two-digit hours are formatted properly
+    else if(colonPos == 2) {
+      switch (time.charAt(0)) {
+        case '0':
+          if(!digits.contains(time.charAt(1)))
+            pass = false;
+          break;
+        case '1':
+          if(!digits.contains(time.charAt(1)))
+            pass = false;
+          break;
+        case '2':
+          if(!(after20.contains(time.charAt(1))))
+            pass = false;
+          break;
+        default:
+          pass = false;
+      }
+    }
+    //if colon isn't in one of those two positions, timestamp is not valid
+    else
+      pass = false;
+
+    return pass;
+  }
+
+  //verify minutes is in proper format
+  public static boolean chkMinutesFormat(String time, int colonPos){
+    boolean pass = true;
+    Set<Character> digits = createDigitSet();
+
+    //verify there are two digits in minutes
+    int count = 0;
+    for(int i = colonPos+1; i < time.length(); ++i)
+      ++count;
+    if(count != 2)
+      pass = false;
+
+    //if passing to this point, check to make sure they're all numerical digits 0 - 59
+    if(pass) {
+      switch (time.charAt(colonPos + 1)) {
+        case '0':
+          if (!digits.contains(time.charAt(colonPos + 2)))
+            pass = false;
+          break;
+        case '1':
+          if (!digits.contains(time.charAt(colonPos + 2)))
+            pass = false;
+          break;
+        case '2':
+          if (!digits.contains(time.charAt(colonPos + 2)))
+            pass = false;
+          break;
+        case '3':
+          if (!digits.contains(time.charAt(colonPos + 2)))
+            pass = false;
+          break;
+        case '4':
+          if (!digits.contains(time.charAt(colonPos + 2)))
+            pass = false;
+          break;
+        case '5':
+          if (!digits.contains(time.charAt(colonPos + 2)))
+            pass = false;
+          break;
+        default:
+          pass = false;
+      }
+    }
 
     return pass;
   }

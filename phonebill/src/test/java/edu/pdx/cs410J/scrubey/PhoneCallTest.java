@@ -1,8 +1,6 @@
 package edu.pdx.cs410J.scrubey;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-import org.junit.Test;
+import org.junit.*;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -13,18 +11,18 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * You'll need to update these unit tests as you build out you program.
  */
 public class PhoneCallTest {
-  @Test(expected = UnsupportedOperationException.class)
+  @Test
   public void getStartTimeStringNeedsToBeImplemented() {
   PhoneCall call = new PhoneCall("123-456-7890", "098-765-4321", "01/02/2020",
                                 "19:39", "1/2/20", "1:03");
-    call.getStartTimeString();
+    assertThat(call.getStartTimeString(), equalTo("19:39"));
   }
 
   @Test
   public void initiallyAllPhoneCallsHaveTheSameCallee() {
     PhoneCall call = new PhoneCall("123-456-7890", "098-765-4321", "01/02/2020",
                                   "19:39", "1/2/20", "1:03");
-    assertThat(call.getCallee(), containsString("not implemented"));
+    assertThat(call.getCallee(), equalTo("098-765-4321"));
   }
 
   @Test

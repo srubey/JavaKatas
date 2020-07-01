@@ -221,6 +221,60 @@ public class Project1Test {
   }
 
   @Test
+  public void testChkTimeFormat(){
+    ArrayList<String> good = new ArrayList<>(Arrays.asList("Scott Rubey", "123-456-7890", "098-765-4321",
+            "01/02/2020", "19:39", "1/2/20", "1:03"));
+
+    assertThat(Project1.chkTimeFormat(good), equalTo(true));
+  }
+
+  @Test
+  public void testChkTimeArgs(){
+    String good1 = "1:13";
+    String good2 = "01:13";
+    String bad1 = ":0113";
+    String bad2 = "0113:";
+    String bad3 = "a:13";
+    String bad4 = "0a:13";
+
+    //assertThat(Project1.chkTimeArgs(good1), equalTo(true));
+    assertThat(Project1.chkTimeArgs(bad1), equalTo(false));
+    assertThat(Project1.chkTimeArgs(bad2), equalTo(false));
+    assertThat(Project1.chkTimeArgs(bad3), equalTo(false));
+    assertThat(Project1.chkTimeArgs(bad4), equalTo(false));
+  }
+
+  @Test
+  public void testChkHoursFormat(){
+    String good1 = "0:35";
+    String good2 = "01:35";
+    String good3 = "23:59";
+    String bad1 = "24:00";
+
+    assertThat(Project1.chkHoursFormat(good1, 1), equalTo(true));
+    assertThat(Project1.chkHoursFormat(good2, 2), equalTo(true));
+    assertThat(Project1.chkHoursFormat(good3, 2), equalTo(true));
+    assertThat(Project1.chkHoursFormat(bad1, 2), equalTo(false));
+  }
+
+  @Test
+  public void testChkMinutesFormat(){
+    String good1 = "12:59";
+    String good2 = "12:01";
+    String good3 = "1:59";
+    String good4 = "1:01";
+    String bad1 = "01:0";
+    String bad2 = "1:000";
+
+    assertThat(Project1.chkMinutesFormat(good1, 2), equalTo(true));
+    assertThat(Project1.chkMinutesFormat(good2, 2), equalTo(true));
+    assertThat(Project1.chkMinutesFormat(good3, 1), equalTo(true));
+    assertThat(Project1.chkMinutesFormat(good4, 1), equalTo(true));
+    assertThat(Project1.chkMinutesFormat(bad1, 2), equalTo(false));
+    assertThat(Project1.chkMinutesFormat(bad2, 1), equalTo(false));
+  }
+
+  @Test
   public void testIsReadMeFlagPresent(){
     ArrayList<String> present = new ArrayList<>(Arrays.asList("-print", "-README"));
     ArrayList<String> notPresent = new ArrayList<>(Arrays.asList("-print"));

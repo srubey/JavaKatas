@@ -1,10 +1,12 @@
 package edu.pdx.cs410J.scrubey;
 import edu.pdx.cs410J.AbstractPhoneBill;
+import edu.pdx.cs410J.AbstractPhoneCall;
+
 import java.util.TreeSet;
 
 import java.util.Collection;
-/*
-public class PhoneBill extends AbstractPhoneBill {
+
+public class PhoneBill extends AbstractPhoneBill<PhoneCall> {
     protected String customer;
     protected TreeSet<PhoneCall> calls;
 
@@ -18,6 +20,7 @@ public class PhoneBill extends AbstractPhoneBill {
        return null;
     }
 
+    @Override
     public void addPhoneCall(PhoneCall call){
         ;
     }
@@ -27,4 +30,4 @@ public class PhoneBill extends AbstractPhoneBill {
 
         return calls;
     }
-}  */
+}
