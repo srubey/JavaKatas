@@ -68,8 +68,8 @@ public class Project1 {
     PhoneCall call = new PhoneCall(caller, callee, sDate, sTime, eDate, eTime);  // Refer to one of Dave's classes so that we can be sure it is on the classpath
     PhoneBill bill = new PhoneBill(custName);
 
+    //add call to phone bill
     bill.addPhoneCall(call);
-    System.out.print(bill.getPhoneCalls().size());
 
     //print README if flag present; if cannot read file, print error message
     if(readMeFlag(CLopts)) {
