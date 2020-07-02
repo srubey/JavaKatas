@@ -29,8 +29,10 @@ public class Project1 {
 
     //print error message if incorrect number of CL arguments
     passErrChk = chkNumberOfCLArgs(CLargs);
-    if(!passErrChk)
+    if(!passErrChk) {
       System.err.println("\nIncorrect number of command line arguments");
+      System.exit(1);
+    }
 
     //print error message if CL options contain errors
     boolean optsOK = false;
@@ -46,30 +48,33 @@ public class Project1 {
       boolean found = openReadMe();
       if (!found)
         System.out.print("Could not connect to README file");
-      System.exit(0);
+        System.exit(0);
     }
 
     //check phone number formatting
     passErrChk = chkPhoneArgs(CLargs);
-    if(!passErrChk)
+    if(!passErrChk) {
       System.err.println("\nPhone number entered improperly");
+      System.exit(1);
+    }
 
     //check date formatting
     passErrChk = chkDateFormat(CLargs);
-    if(!passErrChk)
+    if(!passErrChk) {
       System.err.println("\nDate entered improperly");
+      System.exit(1);
+    }
 
     //check timestamp formatting
     passErrChk = chkTimeFormat(CLargs);
-    if(!passErrChk)
+    if(!passErrChk) {
       System.err.println("\nTime entered improperly");
+      System.exit(1);
+    }
 
     //sanity check
     //System.out.print(CLargs);
     //System.out.print(CLopts);
-
-    if(!passErrChk)
-      System.exit(1);
 
     //if all arguments are present w/out errors, assign args to variables
     String custName = CLargs.get(0);
