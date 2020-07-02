@@ -33,6 +33,15 @@ public class Project1 {
     if(!optsOK)
       System.out.print("\nError detected in command line option");
 
+    //if README flag is present, print file and exit program;
+    //if cannot connect to file, print error message
+    if(readMeFlag(CLopts)) {
+      boolean found = openReadMe();
+      if (!found)
+        System.out.print("Could not connect to README file");
+      System.exit(0);
+    }
+
     //check phone number formatting
     passErrChk = chkPhoneArgs(CLargs);
     if(!passErrChk)
@@ -71,16 +80,11 @@ public class Project1 {
     //add call to phone bill
     bill.addPhoneCall(call);
 
-    //print README if flag present; if cannot read file, print error message
-    if(readMeFlag(CLopts)) {
-      boolean found = openReadMe();
-      if (!found)
-        System.out.print("Could not connect to README file");
-    }
-
     //print call info if -print flag is present
     if(printFlag(CLopts))
       System.out.print(call.toString());
+
+    System.exit(0);
   }
 
   //add CL args and options to appropriate list
@@ -514,9 +518,9 @@ public class Project1 {
       found = false;
     }
 
-    if(readFile.hasNext()){
+    while (readFile.hasNext()) {
       String line = readFile.nextLine();
-      System.out.print(line);
+      System.out.println(line);
     }
 
     System.out.print("\n");
