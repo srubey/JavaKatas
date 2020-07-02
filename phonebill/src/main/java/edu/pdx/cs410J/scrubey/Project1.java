@@ -602,7 +602,6 @@ public class Project1 {
   /**
    * Opens and prints README file
    * @return true if README file is found and opened, false if file not found
-   * @throws FileNotFoundException e
    */
   public static boolean openReadMe(){
     Scanner readFile = null;
