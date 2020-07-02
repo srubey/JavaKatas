@@ -40,14 +40,14 @@ public class Project1 {
       optsOK = chkOptsForErrors(CLopts);
     }
     if(!optsOK)
-      System.out.print("\nError detected in command line option");
+      System.err.println("\nError detected in command line option");
 
     //if README flag is present, print file and exit program;
     //if cannot connect to file, print error message
     if(readMeFlag(CLopts)) {
       boolean found = openReadMe();
       if (!found)
-        System.out.print("Could not connect to README file");
+        System.err.print("Could not connect to README file");
         System.exit(0);
     }
 
