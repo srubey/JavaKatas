@@ -18,6 +18,7 @@ public class Project1 {
    * <code>PhoneBill</code> and <code>PhoneCall</code>, and
    * prints a description of the phone call to standard out
    * by invoking its <code>toString</code> method.
+   * @param args command line arguments entered by the user
    */
   public static void main(String[] args) {
     ArrayList<String> CLargs = new ArrayList<>();  //command line arguments list
@@ -232,7 +233,7 @@ public class Project1 {
   /**
    * Checks for proper formatting of date arguments
    * @param date <code>String</code> object containing the date entered by the user
-   * @return
+   * @return returns true if date is formatted properly, otherwise false
    */
   public static boolean chkDateArgs(String date){
     boolean pass = true;
@@ -601,7 +602,7 @@ public class Project1 {
   /**
    * Opens and prints README file
    * @return true if README file is found and opened, false if file not found
-   * @throws <code>FileNotFoundException</code>
+   * @throws FileNotFoundException e
    */
   public static boolean openReadMe(){
     Scanner readFile = null;
