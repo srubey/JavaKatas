@@ -10,14 +10,12 @@ public class PhoneBill extends AbstractPhoneBill<PhoneCall> {
     /**
      * Creates a new <code>PhoneBill</code>
      *
-     * @param customer
-     *        The customer's name.  May be one or more words, and may contain
-     *        letters, numbers and symbols.
-     * @param calls
-     *        The data structure that contains all phone calls attributed to
-     *        the given customer
+     * @param customer The customer's name.  May be one or more words, and
+     *                 may contain letters, numbers and symbols.
+     * @param calls The data structure that contains all phone calls attributed
+     *              to the given customer
      */
-    
+
     protected String customer;
     protected ArrayList<PhoneCall> calls;
 
