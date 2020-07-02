@@ -6,6 +6,26 @@ import edu.pdx.cs410J.AbstractPhoneCall;
  * This class is represents a <code>PhoneCall</code>.
  */
 public class PhoneCall extends AbstractPhoneCall {
+  /**
+   * Creates a new <code>PhoneCall</code>
+   *
+   * @param callerNumber
+   *        The 10-digit telephone number of the caller in nnn-nnn-nnnn format
+   * @param calleeNumber
+   *        The 10-digit telephone number of the callee in nnn-nnn-nnnn format
+   * @param startDate
+   *        The starting date of the telephone call in mm/dd/yyyy format.
+   *        mm and dd may start with leading zeros, if applicable.
+   * @param startTime
+   *        The starting time of the telephone call in hh:mm format.
+   *        hh may start with a leading zero, if applicable.
+   * @param endDate
+   *        The starting date of the telephone call in mm/dd/yyyy format.
+   *        mm and dd may start with leading zeros, if applicable.
+   * @param endTime
+   *        The ending time of the telephone call in hh:mm format.
+   *        hh may start with a leading zero, if applicable.
+   */
 
   protected String callerNumber;
   protected String calleeNumber;
