@@ -254,7 +254,11 @@ public class Project1 {
     return pass;
   }
 
-  //check to see that date is proper number of characters
+  /**
+   * Verifies that date <code>String</code>is proper number of characters
+   * @param date <code>String</code> object containing the date entered by the user
+   * @return true if date is in correct date range, false if not
+   */
   public static boolean chkDateLength(String date){
     boolean pass = true;
 
@@ -264,7 +268,11 @@ public class Project1 {
     return pass;
   }
 
-  //check that there are only 2 '/'s in the date
+  /**
+   * Verifies that there are only two '/'s in the date <code>String</code>
+   * @param date <code>String</code> object containing the date entered by the user
+   * @return true if there are two '/'s, false otherwise
+   */
   public static boolean chkDateSlashes(String date){
     boolean pass = true;
     int count = 0;
@@ -280,7 +288,11 @@ public class Project1 {
     return pass;
   }
 
-  //check that any char not '/' is a digit
+  /**
+   * Verifies any <code>char</code> that's not a '/' is a digit 0 - 9
+   * @param date <code>String</code> object containing the date entered by the user
+   * @return true if all characters are correct combination of digits and '/'
+   */
   public static boolean chkDateDigits(String date){
     boolean pass = true;
     Set<Character> digits = createDigitSet();
@@ -297,7 +309,12 @@ public class Project1 {
     return pass;
   }
 
-  //verify month is in proper format
+  /**
+   * Verify the month in mm/dd/yyyy is in proper format
+   * @param date <code>String</code> object containing the date entered by the user
+   * @return true if month in proper format; can be digits 1 - 12 and include leading zeros
+   *         false otherwise
+   */
   public static boolean chkMonthFormat(String date){
     boolean pass = false;
     int slashPos = 0;
@@ -335,6 +352,12 @@ public class Project1 {
     return pass;
   }
 
+  /**
+   * Verify the dd in mm/dd/yyyy is in proper format
+   * @param date <code>String</code> object containing the date entered by the user
+   * @return true if day in proper format; can be digits 1 - 31 and include leading zeros
+   *         false otherwise
+   */
   //verify day is in proper format
   public static boolean chkDayFormat(String date){
     boolean pass = false;
@@ -405,7 +428,11 @@ public class Project1 {
     return pass;
   }
 
-  //wrapper for chkTimeArgs
+  /**
+   * Wrapper method for chkTimeArgs()
+   * @param arguments the <code>ArrayList</code> that contains all arguments entered by the user
+   * @return true/false value, as returned by ckTimeArgs()
+   */
   public static boolean chkTimeFormat(ArrayList<String> arguments){
     boolean pass = true;
 
@@ -417,7 +444,12 @@ public class Project1 {
     return pass;
   }
 
-  //check for proper timestamp formatting
+  /**
+   * Verifies proper formatting for the time arguments
+   * @param time <code>String</code> object containing the date arguments, as entered by the user
+   * @return true if time is formatted correctly, false otherwise.  Time can be 0:00 through 23:59.
+   *         Leading zeros are accepted when applicable.
+   */
   public static boolean chkTimeArgs(String time){
     boolean pass = true;
     int colonPos = 0;
@@ -447,7 +479,12 @@ public class Project1 {
     return pass;
   }
 
-  //verify hours is in proper format
+  /**
+   * Verifies hh in hh:mm is formatted correctly
+   * @param time <code>String</code> object containing the date argument, as entered by the user
+   * @param colonPos index of the ':' character
+   * @return true if hh is formatted correct (0 - 23, leading zeros okay when applicable), false otherwise
+   */
   public static boolean chkHoursFormat(String time, int colonPos){
     boolean pass = true;
     Set<Character> digits = createDigitSet();
@@ -490,7 +527,12 @@ public class Project1 {
     return pass;
   }
 
-  //verify minutes is in proper format
+  /**
+   * Verifies mm in hh:mm is formatted correctly
+   * @param time <code>String</code> object containing the date argument, as entered by the user
+   * @param colonPos index of the ':' character
+   * @return true if mm is formatted correctly (00 - 59), false otherwise
+   */
   public static boolean chkMinutesFormat(String time, int colonPos){
     boolean pass = true;
     Set<Character> digits = createDigitSet();
@@ -537,7 +579,11 @@ public class Project1 {
     return pass;
   }
 
-  //see if README flag is present in CL options
+  /**
+   * Determines whether -README flag is present in command line options entered by user
+   * @param options the <code>ArrayList</code> that contains all options/flags entered by the user
+   * @return true if -README flag is present, false otherwise
+   */
   public static boolean readMeFlag(ArrayList options){
     boolean flagPresent = false;
 
@@ -547,7 +593,11 @@ public class Project1 {
     return flagPresent;
   }
 
-  //open and print -README file
+  /**
+   * Opens and prints README file
+   * @return true if README file is found and opened, false if file not found
+   * @throws <code>FileNotFoundException</code>
+   */
   public static boolean openReadMe(){
     Scanner readFile = null;
     boolean found = true;
@@ -569,6 +619,11 @@ public class Project1 {
     return found;
   }
 
+  /**
+   * Determines whether -print flag is present in command line options entered by user
+   * @param options the <code>ArrayList</code> that contains all options/flags entered by the user
+   * @return true if -print flag is present, false otherwise
+   */
   //see if -print flag is present in CL options
   public static boolean printFlag(ArrayList options){
     boolean flagPresent = false;
