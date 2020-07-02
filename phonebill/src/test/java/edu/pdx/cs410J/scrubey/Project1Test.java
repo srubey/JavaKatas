@@ -20,6 +20,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * from {@link Project1IT} which is an integration test (and can handle the calls
  * to {@link System#exit(int)} and the like.
  */
+
 public class Project1Test {
   @Test
   public void readmeCanBeReadAsResource() throws IOException {
