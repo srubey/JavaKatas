@@ -8,10 +8,17 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * The main class for the CS410J Phone Bill Project
+ * The main class for the CS410J Phone Bill Project.
+ * Includes utility methods for parsing command line arguments
+ * and error checking.
  */
 public class Project1 {
-
+  /**
+   * Main program that parses the command line, creates a
+   * <code>PhoneBill</code> and <code>PhoneCall</code>, and
+   * prints a description of the phone call to standard out
+   * by invoking its <code>toString</code> method.
+   */
   public static void main(String[] args) {
     ArrayList<String> CLargs = new ArrayList<>();  //command line arguments list
     ArrayList<String> CLopts = new ArrayList<>();  //command line options list
