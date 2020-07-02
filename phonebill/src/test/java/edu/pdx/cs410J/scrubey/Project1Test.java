@@ -30,7 +30,7 @@ public class Project1Test {
       assertThat(readme, not(nullValue()));
       BufferedReader reader = new BufferedReader(new InputStreamReader(readme));
       String line = reader.readLine();
-      assertThat(line, containsString("This is a README file!"));
+      assertThat(line, containsString("This program parses input"));
     }
   }
 
@@ -147,13 +147,13 @@ public class Project1Test {
     String good1 = "1/2/2020";
     String good2 = "01/2/2020";
     String good3 = "01/02/2020";
-    String bad1 = "1/2/20";
+    String good4 = "1/2/20";
     String bad2 = "01/02/20203";
 
     assertThat(Project1.chkDateLength(good1), equalTo(true));
     assertThat(Project1.chkDateLength(good2), equalTo(true));
     assertThat(Project1.chkDateLength(good3), equalTo(true));
-    assertThat(Project1.chkDateLength(bad1), equalTo(false));
+    assertThat(Project1.chkDateLength(good4), equalTo(true));
     assertThat(Project1.chkDateLength(bad2), equalTo(false));
   }
 

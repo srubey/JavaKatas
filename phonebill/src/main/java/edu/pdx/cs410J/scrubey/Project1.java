@@ -81,7 +81,7 @@ public class Project1 {
     String eTime = CLargs.get(6);
 
     //create class objects
-    PhoneCall call = new PhoneCall(caller, callee, sDate, sTime, eDate, eTime);  // Refer to one of Dave's classes so that we can be sure it is on the classpath
+    PhoneCall call = new PhoneCall(caller, callee, sDate, sTime, eDate, eTime);
     PhoneBill bill = new PhoneBill(custName);
 
     //add call to phone bill
@@ -94,7 +94,12 @@ public class Project1 {
     System.exit(0);
   }
 
-  //add CL args and options to appropriate list
+  /**
+   * Adds command line arguments and options to the appropriate lists
+   * @param args all arguments as input via the command line
+   * @param arguments the <code>ArrayList</code> that will contain arguments used to create PhoneBill and PhoneCall objects
+   * @param options the <code>ArrayList</code> that will contain options/flags such as -README, -print
+   */
   public static void CLargsToLists(String[] args, ArrayList arguments, ArrayList options){
     for (String arg : args) {
       if(arg.startsWith("-"))
@@ -104,7 +109,11 @@ public class Project1 {
     }
   }
 
-  //verify proper number of command line arguments
+  /**
+   * Verifies that the proper number of command line arguments have been input by the user
+   * @param argList the <code>ArrayList</code> that contains all arguments entered by the user
+   * @return true/false value indicating whether the user entered the proper number of arguments
+   */
   public static boolean chkNumberOfCLArgs(ArrayList argList){
     boolean pass = true;
 
@@ -114,7 +123,11 @@ public class Project1 {
     return pass;
   }
 
-  //check whether option flags contain errors
+  /**
+   * Checks if any of the option flags (i.e. -README, -print) contains errors
+   * @param options the <code>ArrayList</code> that contains all options/flags entered by the user
+   * @return true/false value indicating whether the options/flags were entered correctly
+   */
   public static boolean chkOptsForErrors(ArrayList options){
     boolean flagsOK = false;
 
@@ -127,7 +140,10 @@ public class Project1 {
     return flagsOK;
   }
 
-  //creates a set of acceptable digits 0 - 9 of type char
+  /**
+   * Creates a set of acceptable digits 0 - 9 of type char
+   * @return a <code>HashSet</code> containing all char digits 0 - 9
+   */
   public static Set<Character> createDigitSet(){
     Set<Character> digits = new HashSet<>(){{
       add('0');
@@ -145,7 +161,11 @@ public class Project1 {
     return digits;
   }
 
-  //wrapper for checkPhNumFormat
+  /**
+   * Wrapper method for checkPhNumFormat()
+   * @param argList the <code>ArrayList</code> that contains all arguments entered by the user
+   * @return true/false value, as returned by checkPhNumFormat()
+   */
   public static boolean chkPhoneArgs(ArrayList<String> argList){
     boolean pass = true;
 
@@ -160,7 +180,12 @@ public class Project1 {
     return pass;
   }
 
-  //check for proper phone number format in 2nd and 3rd arguments
+  /**
+   * Checks to see if phone number was entered in correct format
+   * @param ph the <code>String</code> object containing the phone number
+   * @param digits the <code>ArrayList</code> containing all proper char digits 0 - 9
+   * @return true/false value indicating whether the phone number is formatted properly
+   */
   public static boolean checkPhNumFormat(String ph, Set digits){
     boolean pass = true;
 
@@ -183,7 +208,11 @@ public class Project1 {
     return pass;
   }
 
-  //wrapper for chkDateArgs
+  /**
+   * Wrapper method for chkDateArgs()
+   * @param arguments the <code>ArrayList</code> that contains all arguments entered by the user
+   * @return true/false value, as returned by chkDateArgs()
+   */
   public static boolean chkDateFormat(ArrayList<String> arguments){
     boolean pass = true;
 
@@ -195,27 +224,32 @@ public class Project1 {
     return pass;
   }
 
-  //checks for proper formatting of date arguments
+  /**
+   * Checks for proper formatting of date arguments
+   * @param date <code>String</code> object containing the date entered by the user
+   * @return
+   */
   public static boolean chkDateArgs(String date){
-    Set<Character> digits = createDigitSet();
     boolean pass = true;
-    int firstPos = 0;
-    int secPos = 0;
 
     //verify date has correct number of characters
     pass = chkDateLength(date);
 
     //verify date has only 2 slashes
-    pass = chkDateSlashes(date);
+    if(pass)
+      pass = chkDateSlashes(date);
 
     //verify any char that's not '/' is a digit
-    pass = chkDateDigits(date);
+    if(pass)
+      pass = chkDateDigits(date);
 
     //verify month is formatted properly
-    pass = chkMonthFormat(date);
+    if(pass)
+      pass = chkMonthFormat(date);
 
     //verify day is formatted properly
-    pass = chkDayFormat(date);
+    if(pass)
+      pass = chkDayFormat(date);
 
     return pass;
   }
@@ -224,7 +258,7 @@ public class Project1 {
   public static boolean chkDateLength(String date){
     boolean pass = true;
 
-    if(date.length() > 10 || date.length() < 8)
+    if(date.length() > 10 || date.length() < 6)
       pass = false;
 
     return pass;
