@@ -256,6 +256,10 @@ public class Project1 {
     if(pass)
       pass = chkDayFormat(date);
 
+    //verify year is formatted properly
+    if(pass)
+      pass = chkYearFormat(date);
+
     return pass;
   }
 
@@ -428,6 +432,29 @@ public class Project1 {
 
     //final redundant check to verify the day is only 1 or 2 digits long
     if(!oneDigitDay && !twoDigitDay)
+      pass = false;
+
+    return pass;
+  }
+
+  /**
+   * Verify the yyyy in mm/dd/yyyy is in proper format
+   * @param date <code>String</code> object containing the date entered by the user
+   * @return true if year in proper format; can be digits 0 - 9, must be 4 digits long
+   *         false otherwise
+   */
+  public static boolean chkYearFormat(String date){
+    boolean pass = true;
+    Set<Character> digits = createDigitSet();
+
+    //verify last four digits are in range 0 - 9
+    for(int i = date.length()-1; i > date.length()-5; --i){
+      if(!digits.contains(date.charAt(i)))
+        pass = false;
+    }
+
+    //verify the character prior to the yyyy is a '/'
+    if(date.charAt(date.length()-5) != '/')
       pass = false;
 
     return pass;

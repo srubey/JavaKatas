@@ -128,7 +128,7 @@ public class Project1Test {
   @Test
   public void testDateFormatWrapper(){
     ArrayList<String> good = new ArrayList<>(Arrays.asList("Scott Rubey", "123-456-7890", "098-765-4321",
-            "01/02/2020", "19:39", "1/2/20", "1:03"));
+            "01/02/2020", "19:39", "1/2/2020", "1:03"));
 
     assertThat(Project1.chkDateFormat(good), equalTo(true));
   }
@@ -217,6 +217,17 @@ public class Project1Test {
     assertThat(Project1.chkDayFormat(bad2), equalTo(false));
     assertThat(Project1.chkDayFormat(bad3), equalTo(false));
     assertThat(Project1.chkDayFormat(bad4), equalTo(false));
+  }
+
+  @Test
+  public void testYearFormat(){
+    String good = "1/2/2020";
+    String bad1 = "1/2/202";
+    String bad2 = "1/2/20202";
+
+    assertThat(Project1.chkYearFormat(good), equalTo(true));
+    assertThat(Project1.chkYearFormat(bad1), equalTo(false));
+    assertThat(Project1.chkYearFormat(bad2), equalTo(false));
   }
 
   @Test
