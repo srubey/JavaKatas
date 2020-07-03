@@ -7,18 +7,15 @@ import java.util.Collection;
  * This class is represents a <code>PhoneBill</code>.
  */
 public class PhoneBill extends AbstractPhoneBill<PhoneCall> {
-    /**
-     * Creates a new <code>PhoneBill</code>
-     *
-     * @param customer The customer's name.  May be one or more words, and
-     *                 may contain letters, numbers and symbols.
-     * @param calls The data structure that contains all phone calls attributed
-     *              to the given customer
-     */
 
     protected String customer;
     protected ArrayList<PhoneCall> calls;
 
+    /**
+     * Builds a <code>PhoneBill</code> class object
+     * @param customer The customer's name.  May be one or more words, and may contain
+     *                 letters, numbers and symbols.
+     */
     protected PhoneBill(String customer){
         this.customer = customer;
         this.calls = new ArrayList<>();
