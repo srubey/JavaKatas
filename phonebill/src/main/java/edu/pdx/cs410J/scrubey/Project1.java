@@ -1,10 +1,9 @@
 package edu.pdx.cs410J.scrubey;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -603,20 +602,31 @@ public class Project1 {
    * Opens and prints README file
    * @return true if README file is found and opened, false if file not found
    */
-  public static boolean openReadMe(){
+  public static boolean openReadMe() {
     Scanner readFile = null;
+    String line = null;
+    BufferedReader reader = null;
+    InputStream readme = null;
     boolean found = true;
 
-    try {
+/*    try {
       readFile = new Scanner(new File("/Users/srubey/PortlandStateJavaSummer2020/phonebill/src/main/resources/edu/pdx/cs410J/scrubey/README.txt"));
     }
     catch(FileNotFoundException e) {
       found = false;
-    }
+    }  */
 
-    while (readFile.hasNext()) {
-      String line = readFile.nextLine();
-      System.out.println(line);
+    try {
+      readme = Project1.class.getResourceAsStream("README.txt");
+      reader = new BufferedReader(new InputStreamReader(readme));
+      line = reader.readLine();
+      while (line != null) {
+        System.out.println(line);
+        line = reader.readLine();
+      }
+      reader.close();
+    } catch(IOException e){
+      found = false;
     }
 
     System.out.print("\n");
