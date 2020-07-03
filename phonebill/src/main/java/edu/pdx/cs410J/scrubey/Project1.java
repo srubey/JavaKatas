@@ -603,18 +603,10 @@ public class Project1 {
    * @return true if README file is found and opened, false if file not found
    */
   public static boolean openReadMe() {
-    Scanner readFile = null;
-    String line = null;
-    BufferedReader reader = null;
-    InputStream readme = null;
+    String line;
+    BufferedReader reader;
+    InputStream readme;
     boolean found = true;
-
-/*    try {
-      readFile = new Scanner(new File("/Users/srubey/PortlandStateJavaSummer2020/phonebill/src/main/resources/edu/pdx/cs410J/scrubey/README.txt"));
-    }
-    catch(FileNotFoundException e) {
-      found = false;
-    }  */
 
     try {
       readme = Project1.class.getResourceAsStream("README.txt");
