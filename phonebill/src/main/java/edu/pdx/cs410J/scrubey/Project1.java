@@ -94,7 +94,7 @@ public class Project1 {
 
     //print call info if -print flag is present
     if(printFlag(CLopts))
-      System.out.print(call.toString());
+      System.out.print(call.toString() + "\n\n");
 
     System.exit(0);
   }
