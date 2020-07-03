@@ -2,7 +2,7 @@ This program parses input from the command line and allows the user to print pho
 information via the '-print' flag.  A program runs successfully given the following
 command line input:
 
-java edu.pdx.cs410J.<login-id>.Project1 -README -print "Customer name" Caller-number
+java -jar target/phonebill-Summer2020.jar -README -print "Customer name" Caller-number
    Callee-number startDate startTime endDate endTime
 
 The -README and -print flags are optional.  Note, if the customer's name is more than

@@ -27,6 +27,15 @@ public class Project1 {
     //split CL args into arguments and options
     CLargsToLists(args, CLargs, CLopts);
 
+    //if README flag is present, print file and exit program;
+    //if cannot connect to file, print error message
+    if(readMeFlag(CLopts)) {
+      boolean found = openReadMe();
+      if (!found)
+        System.err.print("Could not connect to README file");
+      System.exit(0);
+    }
+
     //print error message if incorrect number of CL arguments
     passErrChk = chkNumberOfCLArgs(CLargs);
     if(!passErrChk) {
@@ -41,15 +50,6 @@ public class Project1 {
     }
     if(!optsOK)
       System.err.println("\nError detected in command line option");
-
-    //if README flag is present, print file and exit program;
-    //if cannot connect to file, print error message
-    if(readMeFlag(CLopts)) {
-      boolean found = openReadMe();
-      if (!found)
-        System.err.print("Could not connect to README file");
-        System.exit(0);
-    }
 
     //check phone number formatting
     passErrChk = chkPhoneArgs(CLargs);
