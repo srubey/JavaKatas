@@ -4,7 +4,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Scanner;
 
 /**
  * The main class for the CS410J Phone Bill Project.
