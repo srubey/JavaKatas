@@ -93,12 +93,18 @@ public class AboutFileIO {
         pw.close();
 
         StringBuffer sb = new StringBuffer();
-        Scanner reader = new Scanner(file);
-        while(reader.hasNextLine()){
-            String line = reader.nextLine();
+        // to the StringBuffer
+        /*while(line != null) {
             sb.append(line);
-        }
-        reader.close();
+            line = reader.readLine();
+        } */
+
+       Scanner reader = new Scanner(file);
+       while(reader.hasNextLine()){
+           String line = reader.nextLine();
+           sb.append(line);
+       }
+       reader.close();
 
         assertEquals(sb.toString(), "1. line2. line");
     }
