@@ -5,6 +5,7 @@ import com.sandwich.koan.Koan;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.logging.Logger;
+import java.util.Scanner;
 
 import static com.sandwich.koan.constant.KoanConstants.__;
 import static com.sandwich.util.Assert.assertEquals;
@@ -92,16 +93,14 @@ public class AboutFileIO {
         pw.close();
 
         StringBuffer sb = new StringBuffer();
-        // Add the loop to go through the file line by line and add the line
-        // to the StringBuffer
-        BufferedReader reader = new BufferedReader(new FileReader(file));
-        String line = reader.readLine();
-        while(line != null) {
+        Scanner reader = new Scanner(file);
+        while(reader.hasNextLine()){
+            String line = reader.nextLine();
             sb.append(line);
-            reader.readLine();
         }
+        reader.close();
 
-        assertEquals(sb.toString(), "1. line\n2. line");
+        assertEquals(sb.toString(), "1. line2. line");
     }
 }
 
