@@ -1,5 +1,6 @@
 package edu.pdx.cs410J.scrubey;
 
+import edu.pdx.cs410J.ParserException;
 import org.w3c.dom.Text;
 
 import java.io.*;
@@ -20,7 +21,7 @@ public class Project2 {
    * by invoking its <code>toString</code> method.
    * @param args command line arguments entered by the user
    */
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws IOException, ParserException {
     ArrayList<String> CLargs = new ArrayList<>();  //command line arguments list
     ArrayList<String> CLopts = new ArrayList<>();  //command line options list
     boolean passErrChk = true;
@@ -46,7 +47,9 @@ public class Project2 {
 
     //print error message if CL options contain errors
     boolean optsOK = false;
-    if(CLopts.size() > 0){
+    if(CLopts.size() == 0)
+      optsOK = true;
+    else if(CLopts.size() > 0){
       optsOK = chkOptsForErrors(CLopts);
     }
     if(!optsOK)
@@ -98,6 +101,10 @@ public class Project2 {
 
     //add call to phone bill
     bill.addPhoneCall(call);
+
+    //print data file
+    TextParser parser = new TextParser();
+    parser.parse();
 
     //print call info if -print flag is present
     if(printFlag(CLopts))
