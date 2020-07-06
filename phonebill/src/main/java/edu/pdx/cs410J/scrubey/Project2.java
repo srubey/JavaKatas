@@ -96,13 +96,14 @@ public class Project2 {
     //add call info from CL args to current bill
     bill.addPhoneCall(call);
 
+    //create phone bill text file
     TextDumper tDump = new TextDumper();
     tDump.dump(bill);
 
     //add call to phone bill
     bill.addPhoneCall(call);
 
-    //print data file
+    //store info in data file as PhoneBill object
     TextParser parser = new TextParser();
     parser.parse();
 

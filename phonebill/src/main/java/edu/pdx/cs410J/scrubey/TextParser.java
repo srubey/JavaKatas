@@ -9,23 +9,20 @@ import java.io.InputStreamReader;
 
 public class TextParser implements PhoneBillParser<PhoneBill> {
     public PhoneBill parse() throws ParserException{
-        PhoneBill bill;
-        String line = null;
+        PhoneBill bill = null;
         BufferedReader reader;
-        InputStream readme;
+        InputStream file;
 
         try {
-            readme = Project2.class.getResourceAsStream("PhoneBill.txt");
-            reader = new BufferedReader(new InputStreamReader(readme));
-            line = reader.readLine();
+            file = Project2.class.getResourceAsStream("PhoneBill.txt");
+            reader = new BufferedReader(new InputStreamReader(file));
 
-            String customer = parseCustomer(line);
+            //parse customer's name, create new bill object under that name
+            String customer = parseCustomer(reader);
             bill = new PhoneBill(customer);
 
-            while (line != null) {
-                System.out.println(line);
-                line = reader.readLine();
-            }
+
+
             reader.close();
         } catch(IOException e){
             System.out.print("\nFile not found");
@@ -34,7 +31,26 @@ public class TextParser implements PhoneBillParser<PhoneBill> {
         return bill;
     }
 
-    public String parseCustomer(String line){
-        return "Scott Rubey";
+    /**
+     * Parses the customer's name from the text file
+     * @param br BufferedReader object for reading text file
+     * @return customer's name
+     */
+    public String parseCustomer(BufferedReader br) throws IOException {
+        String[] splitStr = null;
+        Boolean found = false;
+
+        String line = br.readLine();
+        while(line != null && !found) {
+            if (line.contains("Customer name: ")) {
+                splitStr = line.split(": ", 2);
+                found = true;
+            }
+            line = br.readLine();
+        }
+
+        String name = splitStr[1];
+
+        return name;
     }
 }
