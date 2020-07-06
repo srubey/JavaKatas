@@ -60,11 +60,23 @@ public class PhoneCall extends AbstractPhoneCall {
   }
 
   /**
+   * @return the start date of the telephone call
+   */
+  public String getStartDateString(){ return this.startDate; }
+
+  /**
    * @return the start time of the telephone call
    */
   @Override
   public String getStartTimeString() {
     return this.startTime;
+  }
+
+  /**
+   * @return the end date of the telephone call
+   */
+  public String getEndDateString(){
+    return this.endDate;
   }
 
   /**
