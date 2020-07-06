@@ -11,12 +11,4 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 
 public class TextDumperTest {
-    @Test
-    public void testTextDumperObjectCreation(){
-        String name = "Joe Schmoe";
-        PhoneBill bill = new PhoneBill(name);
-        TextDumper td = new TextDumper(bill);
-
-        assertThat(td.bill.getCustomer(), equalTo(name));
-    }
 }

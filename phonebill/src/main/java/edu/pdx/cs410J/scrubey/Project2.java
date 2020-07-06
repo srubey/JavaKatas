@@ -20,7 +20,7 @@ public class Project2 {
    * by invoking its <code>toString</code> method.
    * @param args command line arguments entered by the user
    */
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
     ArrayList<String> CLargs = new ArrayList<>();  //command line arguments list
     ArrayList<String> CLopts = new ArrayList<>();  //command line options list
     boolean passErrChk = true;
@@ -93,7 +93,8 @@ public class Project2 {
     //add call info from CL args to current bill
     bill.addPhoneCall(call);
 
-    TextDumper tDump = new TextDumper(bill);
+    TextDumper tDump = new TextDumper();
+    tDump.dump(bill);
 
     //add call to phone bill
     bill.addPhoneCall(call);

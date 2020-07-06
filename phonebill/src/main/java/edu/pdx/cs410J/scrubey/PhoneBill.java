@@ -41,7 +41,7 @@ public class PhoneBill extends AbstractPhoneBill<PhoneCall> {
      * @return the list of calls attributed to the bill
      */
     @Override
-    public Collection<PhoneCall> getPhoneCalls(){
+    public ArrayList<PhoneCall> getPhoneCalls(){
         return this.calls;
     }
 }
