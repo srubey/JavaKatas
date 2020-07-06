@@ -27,7 +27,13 @@ public class TextDumper implements PhoneBillDumper<PhoneBill> {
                 String ed = bill.getPhoneCalls().get(i).endDate;
                 String et = bill.getPhoneCalls().get(i).endTime;
 
-                writer.write(caller + "   " + callee + "   " + sd + "\t" + st + "\t\t" + ed + "\t" + et);
+                writer.write(caller + "   " + callee + "   " + sd);
+
+                //formatting
+                if(sd.length() < 10)
+                    writer.write("\t");
+
+                writer.write("\t" + st + "\t\t" + ed + "\t" + et);
             }
 
             file.createNewFile();
