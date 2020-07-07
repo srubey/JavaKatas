@@ -100,17 +100,25 @@ public class TextParser implements PhoneBillParser<PhoneBill> {
 
     public Boolean chkArgFormatting(String[] callInfo){
         Boolean pass = false;
+        String caller = null;
+        String callee = null;
+        String startDate = null;
+        String startTime = null;
+        String endDate = null;
+        String endTime = null;
 
         //check for proper number of arguments
         if(callInfo.length == 6)
             pass = true;
 
-        String caller = callInfo[0];
-        String callee = callInfo[1];
-        String startDate = callInfo[2];
-        String startTime = callInfo[3];
-        String endDate = callInfo[4];
-        String endTime = callInfo[5];
+        if(pass) {
+            caller = callInfo[0];
+            callee = callInfo[1];
+            startDate = callInfo[2];
+            startTime = callInfo[3];
+            endDate = callInfo[4];
+            endTime = callInfo[5];
+        }
 
         //verify caller/callee are formatted correctly
         if(pass)
