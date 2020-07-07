@@ -36,5 +36,6 @@ public class AboutBase64 {
             assertEquals(plainText, decodedText);
         } catch (UnsupportedEncodingException ex) {}
     }
+    System.out.print("hello");
 
 }
