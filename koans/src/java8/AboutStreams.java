@@ -81,7 +81,7 @@ public class AboutStreams {
                 .mapToInt(String::length)
                 .average();
         double averageLength = Math.round(averageLengthOptional.getAsDouble());
-        assertEquals(averageLength, __);
+        assertEquals(averageLength, 8.0);
     }
 
     @Koan
@@ -89,7 +89,7 @@ public class AboutStreams {
         int lengthSum = places.parallelStream()
                 .mapToInt(String::length)
                 .sum();
-        assertEquals(lengthSum, __);
+        assertEquals(lengthSum, 46);
     }
 
     @Koan
@@ -99,7 +99,7 @@ public class AboutStreams {
                 .limit(3)
                 .skip(1)
                 .sum();
-        assertEquals(lengthSum_Limit_3_Skip_1, __);
+        assertEquals(lengthSum_Limit_3_Skip_1, 14);
     }
 
     @Koan
@@ -109,13 +109,13 @@ public class AboutStreams {
                     str = "hello";
                     return s.startsWith("S");
                 });
-        assertEquals(str, __);
+        assertEquals(str, "");
     }
 
     @Koan
     public void sumRange() {
         int sum = IntStream.range(1, 4).sum();
-        assertEquals(sum, __);
+        assertEquals(sum, 6);
     }
 
     @Koan
@@ -123,6 +123,6 @@ public class AboutStreams {
         List<Integer> range = IntStream.range(1, 4)
                 .boxed()
                 .collect(Collectors.toList());
-        assertEquals(range, __);
+        assertEquals(range, Arrays.asList(1, 2, 3));
     }
 }
