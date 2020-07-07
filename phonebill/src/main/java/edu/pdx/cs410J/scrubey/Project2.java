@@ -105,7 +105,7 @@ public class Project2 {
 
     //store info in data file as PhoneBill object
     TextParser parser = new TextParser();
-    parser.parse();
+    PhoneBill parsedBill = parser.parse();
 
     //print call info if -print flag is present
     if(printFlag(CLopts))
