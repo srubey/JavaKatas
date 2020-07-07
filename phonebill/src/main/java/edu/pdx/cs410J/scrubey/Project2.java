@@ -361,7 +361,7 @@ public class Project2 {
       case 2:
         //if slash is at index 2, 1st digit must be 0 - 1
         //also verifies proper position of '/' character
-        if((date.charAt(0) == '0' || date.charAt(1) == '1') && date.charAt(1) != '/') {
+        if((date.charAt(0) == '0' || date.charAt(0) == '1') && date.charAt(1) != '/') {
           //if first digit is '0', second digit can only be 1 - 9.  If it's not, flip 'pass' back to false
           if (date.charAt(0) == '0' && digits.contains(date.charAt(1)) && date.charAt(1) != '0')
             pass = true;

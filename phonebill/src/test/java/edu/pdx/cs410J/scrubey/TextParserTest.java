@@ -30,4 +30,12 @@ public class TextParserTest {
             System.out.print("\nFile not found");
         }
     }
+
+    @Test
+    public void testParserErrorChecks(){
+        TextParser parser = new TextParser();
+        String[] good = {"123-456-7890", "098-765-4321", "10/20/2020", "7:40", "10/21/2020", "00:06"};
+
+        assertThat(parser.chkArgFormatting(good), equalTo(true));
+    }
 }
