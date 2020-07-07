@@ -52,6 +52,12 @@ public class TextParser implements PhoneBillParser<PhoneBill> {
                 line = br.readLine();
         }
 
+        //if "Customer name: " not present, print error message and exit
+        if(!found){
+            System.out.print("Improperly formatted phone bill");
+            System.exit(1);
+        }
+
         String name = splitStr[1];
 
         return name;
@@ -69,6 +75,12 @@ public class TextParser implements PhoneBillParser<PhoneBill> {
             }
             if(!foundHeadings)
                 line = br.readLine();
+        }
+
+        //if headings not present in text file, print error and exit
+        if(!foundHeadings){
+           System.out.print("Improperly formatted phone bill");
+           System.exit(1);
         }
 
         //move to next line, parse call info

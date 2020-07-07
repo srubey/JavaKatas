@@ -26,6 +26,8 @@ public class Project2 {
     ArrayList<String> CLopts = new ArrayList<>();  //command line options list
     boolean passErrChk = true;
 
+    //verify valid filepath if -textFile flag present
+
     //split CL args into arguments and options
     CLargsToLists(args, CLargs, CLopts);
 
@@ -106,6 +108,13 @@ public class Project2 {
     //store info in data file as PhoneBill object
     TextParser parser = new TextParser();
     PhoneBill parsedBill = parser.parse();
+
+    //verify customer name on text file is same as customer name on command line
+    //if not, print error message and exit
+    if(parsedBill.getCustomer() != custName){
+      System.out.print("\nCustomer name entered does not match customer name on phone bill\n");
+      System.exit(1);
+    }
 
     //print call info if -print flag is present
     if(printFlag(CLopts))
@@ -634,6 +643,20 @@ public class Project2 {
     boolean flagPresent = false;
 
     if(options.contains("-README"))
+      flagPresent = true;
+
+    return flagPresent;
+  }
+
+  /**
+   * Determines whether -textFile flag is present in command line options entered by user
+   * @param options the <code>ArrayList</code> that contains all options/flags entered by the user
+   * @return true if -textFile flag is present, false otherwise
+   */
+  public static boolean textFileFlag(ArrayList options){
+    boolean flagPresent = false;
+
+    if(options.contains("-textFile"))
       flagPresent = true;
 
     return flagPresent;

@@ -295,6 +295,15 @@ public class Project2Test {
   }
 
   @Test
+  public void testIsTextFileFlagPresent(){
+    ArrayList<String> present = new ArrayList<>(Arrays.asList("-print", "-textFile"));
+    ArrayList<String> notPresent = new ArrayList<>(Arrays.asList("-print"));
+
+    assertThat(Project2.textFileFlag(present), equalTo(true));
+    assertThat(Project2.textFileFlag(notPresent), equalTo(false));
+  }
+
+  @Test
   public void testOpenReadMe(){
     assertThat(Project2.openReadMe(), equalTo(true));
   }
