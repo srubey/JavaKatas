@@ -22,7 +22,7 @@ public class TextParser implements PhoneBillParser<PhoneBill> {
             bill = new PhoneBill(customer);
 
             //find list of phone calls (if any), create phonecall objects to add to phonebill's list
-            Boolean callsFound = findCalls(reader, bill);
+            Boolean errorsFound = getCallInfo(reader, bill);
 
             reader.close();
         } catch (IOException e) {
@@ -57,7 +57,7 @@ public class TextParser implements PhoneBillParser<PhoneBill> {
         return name;
     }
 
-    public Boolean findCalls(BufferedReader br, PhoneBill bill) throws IOException {
+    public Boolean getCallInfo(BufferedReader br, PhoneBill bill) throws IOException {
         //find section of bill that has field headings
         Boolean foundHeadings = false;
         String line = br.readLine();
@@ -71,9 +71,9 @@ public class TextParser implements PhoneBillParser<PhoneBill> {
                 line = br.readLine();
         }
 
-        //parse call info
+        //move to next line, parse call info
         Boolean foundCall = false;
-        String[] callInfo = null;
+        String[] callInfo;
         line = br.readLine();
         while(line != null){
             //split string based on 1 or more tabs, 3 spaces, newline
@@ -82,23 +82,52 @@ public class TextParser implements PhoneBillParser<PhoneBill> {
                 arg.trim();
             }
 
-            //***error check arguments i.e. formatting
+            //check parsed args for errors
+            Boolean formatOK = chkArgFormatting(callInfo);
+            if(!formatOK){
+                System.out.print("PhoneBill information formatted incorrectly");
+                System.exit(1);
+            }
 
-            //add args to new phonecall object
-            String caller = callInfo[0];
-            String callee = callInfo[1];
-            String startDate = callInfo[2];
-            String startTime = callInfo[3];
-            String endDate = callInfo[4];
-            String endTime = callInfo[5];
-
-            PhoneCall call = new PhoneCall(caller, callee, startDate, startTime, endDate, endTime);
-            bill.addPhoneCall(call);
+            addCallToBill(callInfo, bill);
             foundCall = true;
 
             line = br.readLine();
         }
 
         return foundCall;
+    }
+
+    public Boolean chkArgFormatting(String[] callInfo){
+        Boolean pass = false;
+
+        //check for proper number of arguments
+        if(callInfo.length == 6)
+            pass = true;
+
+        String caller = callInfo[0];
+        String callee = callInfo[1];
+        String startDate = callInfo[2];
+        String startTime = callInfo[3];
+        String endDate = callInfo[4];
+        String endTime = callInfo[5];
+
+        //verify caller/callee are formatted correctly
+
+
+        return pass;
+    }
+
+    public void addCallToBill(String[] callInfo, PhoneBill bill){
+        //add args to new phonecall object
+        String caller = callInfo[0];
+        String callee = callInfo[1];
+        String startDate = callInfo[2];
+        String startTime = callInfo[3];
+        String endDate = callInfo[4];
+        String endTime = callInfo[5];
+
+        PhoneCall call = new PhoneCall(caller, callee, startDate, startTime, endDate, endTime);
+        bill.addPhoneCall(call);
     }
 }
