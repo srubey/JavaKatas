@@ -34,8 +34,7 @@ public class AboutBase64 {
         try {
             String decodedText = new String(decodedBytes, "utf-8");
             assertEquals(plainText, decodedText);
-        } catch (UnsupportedEncodingException ex) {}
+        } catch (UnsupportedEncodingException ex) {
+        }
     }
-    System.out.print("hello");
-
 }
