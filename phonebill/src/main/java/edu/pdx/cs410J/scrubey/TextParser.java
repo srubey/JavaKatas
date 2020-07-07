@@ -113,7 +113,22 @@ public class TextParser implements PhoneBillParser<PhoneBill> {
         String endTime = callInfo[5];
 
         //verify caller/callee are formatted correctly
+        if(pass)
+            pass = Project2.checkPhNumFormat(caller);
+        if(pass)
+            pass = Project2.checkPhNumFormat(callee);
 
+        //verify startDate/EndDate are formatted correctly
+        if(pass)
+            pass = Project2.chkDateArgs(startDate);
+        if(pass)
+            pass = Project2.chkDateArgs(endDate);
+
+        //verify startTime/endTime are formatted correctly
+        if(pass)
+            pass = Project2.chkTimeArgs(startTime);
+        if(pass)
+            pass = Project2.chkTimeArgs(endTime);
 
         return pass;
     }

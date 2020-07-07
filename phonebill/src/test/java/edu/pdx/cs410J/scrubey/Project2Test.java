@@ -117,11 +117,11 @@ public class Project2Test {
     String tooShort = "123-456-789";
     String wrongChar = "123-4x6-7890";
 
-    assertThat(Project2.checkPhNumFormat(good, digits), equalTo(true));
-    assertThat(Project2.checkPhNumFormat(missingDash, digits), equalTo(false));
-    assertThat(Project2.checkPhNumFormat(tooLong, digits), equalTo(false));
-    assertThat(Project2.checkPhNumFormat(tooShort, digits), equalTo(false));
-    assertThat(Project2.checkPhNumFormat(wrongChar, digits), equalTo(false));
+    assertThat(Project2.checkPhNumFormat(good), equalTo(true));
+    assertThat(Project2.checkPhNumFormat(missingDash), equalTo(false));
+    assertThat(Project2.checkPhNumFormat(tooLong), equalTo(false));
+    assertThat(Project2.checkPhNumFormat(tooShort), equalTo(false));
+    assertThat(Project2.checkPhNumFormat(wrongChar), equalTo(false));
   }
 
   @Test

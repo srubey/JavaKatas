@@ -189,11 +189,8 @@ public class Project2 {
   public static boolean chkPhoneArgs(ArrayList<String> argList){
     boolean pass = true;
 
-    //create set of acceptable digits 0-9
-    Set<Character> digits = createDigitSet();
-
     for(int i = 1; i < 3; ++i) {
-      if (!checkPhNumFormat(argList.get(i), digits))
+      if (!checkPhNumFormat(argList.get(i)))
         pass = false;
     }
 
@@ -203,11 +200,13 @@ public class Project2 {
   /**
    * Checks to see if phone number was entered in correct format
    * @param ph the <code>String</code> object containing the phone number
-   * @param digits the <code>ArrayList</code> containing all proper char digits 0 - 9
    * @return true/false value indicating whether the phone number is formatted properly
    */
-  public static boolean checkPhNumFormat(String ph, Set digits){
+  public static boolean checkPhNumFormat(String ph){
     boolean pass = true;
+
+    //create set of acceptable digits 0-9
+    Set<Character> digits = createDigitSet();
 
     //if phone number is not proper length
     if(ph.length() != 12)
