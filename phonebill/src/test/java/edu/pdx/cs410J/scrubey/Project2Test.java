@@ -85,7 +85,7 @@ public class Project2Test {
   @Test
   public void testChkPhoneArgs(){
     ArrayList<String> good = new ArrayList<>(Arrays.asList("Scott Rubey", "123-456-7890", "098-765-4321",
-                                                          "01/02/2020", "19:39", "1/2/20", "1:03"));
+                                                          "01/02/2020", "19:39", "1/2/2020", "1:03"));
     ArrayList<String> badFirst = new ArrayList<>(Arrays.asList("Scott Rubey", "123-4567890", "098-765-4321",
                                                               "01/02/2020", "19:39", "1/2/20", "1:03"));
     ArrayList<String> badSecond = new ArrayList<>(Arrays.asList("Scott Rubey", "123-456-7890", "0980-765-4321",

@@ -9,7 +9,6 @@ import java.util.Collection;
 public class PhoneBill extends AbstractPhoneBill<PhoneCall> {
 
     protected String customer;
-    protected String fileName;
     protected ArrayList<PhoneCall> calls;
 
     /**
@@ -44,21 +43,5 @@ public class PhoneBill extends AbstractPhoneBill<PhoneCall> {
     @Override
     public ArrayList<PhoneCall> getPhoneCalls(){
         return this.calls;
-    }
-
-    /**
-     * Sets the fileName data member
-     * @param fileName the name of the textfile, as entered by the user on the command line
-     */
-    public void setFileName(String fileName){
-        this.fileName = fileName;
-    }
-
-    /**
-     * Getter method for the fileName data member
-     * @return the filename associated with this phonebill object
-     */
-    public String getFileName(){
-        return this.fileName;
     }
 }

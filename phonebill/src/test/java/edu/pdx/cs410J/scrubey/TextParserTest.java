@@ -1,8 +1,11 @@
 package edu.pdx.cs410J.scrubey;
 
+import edu.pdx.cs410J.ParserException;
 import org.junit.*;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -29,6 +32,18 @@ public class TextParserTest {
         } catch(IOException e){
             System.out.print("\nFile not found");
         }
+    }
+
+    @Test
+    public void testChkArgFormatting(){
+        TextParser parser = new TextParser();
+        String[] good = {"123-456-7890", "098-765-4321", "01/02/2020", "19:39", "1/2/2020", "1:03"};
+        String[] badFirst = {"123-4567890", "098-765-4321", "01/02/2020", "19:39", "1/2/20", "1:03"};
+        String[] badSecond = {"123-456-7890", "0980-765-4321", "01/02/2020", "19:39", "1/2/20", "1:03"};
+
+        assertThat(parser.chkArgFormatting(good), equalTo(true));
+        assertThat(parser.chkArgFormatting(badFirst), equalTo(false));
+        assertThat(parser.chkArgFormatting(badSecond), equalTo(false));
     }
 
     @Test
