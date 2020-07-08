@@ -25,8 +25,7 @@ public class Project2 {
     ArrayList<String> CLargs = new ArrayList<>();  //command line arguments list
     ArrayList<String> CLopts = new ArrayList<>();  //command line options list
     boolean passErrChk = true;
-
-    //verify valid filepath if -textFile flag present
+    String filePath = null;
 
     //split CL args into arguments and options
     CLargsToLists(args, CLargs, CLopts);
@@ -38,6 +37,11 @@ public class Project2 {
       if (!found)
         System.err.print("Could not connect to README file");
       System.exit(0);
+    }
+
+    //if -textfile flag is present, remove path argument from CLargs and return it
+    if(textFileFlag(CLopts)){
+      filePath = getFileName(CLargs);
     }
 
     //print error message if incorrect number of CL arguments
@@ -660,6 +664,18 @@ public class Project2 {
       flagPresent = true;
 
     return flagPresent;
+  }
+
+  /**
+   * The -textFile flag is present, so remove the filename from arg list and return it
+   * @param args the <code>ArrayList</code> that contains all the arguments entered by the user
+   * @return the filename entered by the user
+   */
+  public static String getFileName(ArrayList args){
+    String fileName = (String) args.get(0);
+    args.remove(0);
+
+    return fileName;
   }
 
   /**

@@ -304,6 +304,16 @@ public class Project2Test {
   }
 
   @Test
+  public void testGetFileName(){
+    ArrayList<String> args = new ArrayList<>(Arrays.asList("PhoneBill.txt", "Joe Schmoe", "123-456-7890", "098-765-4321",
+                                                          "01/02/2020", "19:39", "1/2/20", "1:03"));
+    ArrayList<String> opts = new ArrayList<>(Arrays.asList("-print", "-textFile"));
+
+    assertThat(Project2.getFileName(args), equalTo("PhoneBill.txt"));
+    assertThat(args.size(), equalTo(7));
+  }
+
+  @Test
   public void testOpenReadMe(){
     assertThat(Project2.openReadMe(), equalTo(true));
   }
