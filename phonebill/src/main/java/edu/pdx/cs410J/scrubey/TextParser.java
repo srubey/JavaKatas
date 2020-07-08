@@ -8,6 +8,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class TextParser implements PhoneBillParser<PhoneBill> {
+
+    /**
+     * Delegates functionality for parsing text file
+     * @return <code>PhoneBill</code> object created from parsed file
+     * @throws ParserException
+     */
     public PhoneBill parse() throws ParserException {
         PhoneBill bill = null;
         BufferedReader reader;
@@ -34,13 +40,14 @@ public class TextParser implements PhoneBillParser<PhoneBill> {
 
     /**
      * Parses the customer's name from the text file
-     * @param br BufferedReader object for reading text file
+     * @param br <code>BufferedReader</code> object for reading text file
      * @return customer's name
      */
     public String parseCustomer(BufferedReader br) throws IOException {
         String[] splitStr = null;
         Boolean found = false;
 
+        //read in the file line by line
         String line = br.readLine();
         while (line != null && !found) {
             if (line.contains("Customer name: ")) {
@@ -63,6 +70,13 @@ public class TextParser implements PhoneBillParser<PhoneBill> {
         return name;
     }
 
+    /**
+     * Parses call info (caller, callee, start/end date, start/end time) from text file
+     * @param br <code>BufferedReader</code> object
+     * @param bill Current <code>PhoneBill</code> object
+     * @return True if a call was parsed, false if no call was found in the parsed bill
+     * @throws IOException
+     */
     public Boolean getCallInfo(BufferedReader br, PhoneBill bill) throws IOException {
         //find section of bill that has field headings
         Boolean foundHeadings = false;
@@ -110,6 +124,11 @@ public class TextParser implements PhoneBillParser<PhoneBill> {
         return foundCall;
     }
 
+    /**
+     * Error checks the parsed call info
+     * @param callInfo <code>String</code> array containing call info (caller, callee, et al)
+     * @return True if all error checks pass, false otherwise
+     */
     public Boolean chkArgFormatting(String[] callInfo){
         Boolean pass = false;
         String caller = null;
@@ -153,6 +172,11 @@ public class TextParser implements PhoneBillParser<PhoneBill> {
         return pass;
     }
 
+    /**
+     * Adds a <code>PhoneCall</code> to the current <code>PhoneBill</code> object's call list
+     * @param callInfo <code>String</code> array containing call info
+     * @param bill the current <code>PhoneBill</code> object
+     */
     public void addCallToBill(String[] callInfo, PhoneBill bill){
         //add args to new phonecall object
         String caller = callInfo[0];
@@ -166,6 +190,11 @@ public class TextParser implements PhoneBillParser<PhoneBill> {
         bill.addPhoneCall(call);
     }
 
+    /**
+     * Determines whether a file by the filename given on the command line exists
+     * @param fileName <code>String</code> containing the filename argument
+     * @return True if the file already exists, false otherwise
+     */
     public boolean fileExists(String fileName){
         InputStream file = Project2.class.getResourceAsStream(fileName);
 

@@ -100,14 +100,8 @@ public class Project2 {
     String eDate = CLargs.get(5);
     String eTime = CLargs.get(6);
 
-    //create call object
+    //create class objects
     call = new PhoneCall(caller, callee, sDate, sTime, eDate, eTime);
-//  bill = new PhoneBill(custName);
-//  bill.setFileName(fileName);
-    //add call to phone bill
-//      bill.addPhoneCall(call);
-
-
     TextParser parser = new TextParser();
     TextDumper tDump = new TextDumper();
 
@@ -738,6 +732,7 @@ public class Project2 {
   }
 
   /**
+   * Getter method for fileName
    * @return the filename entered by the user
    */
   public static String getFileName(){

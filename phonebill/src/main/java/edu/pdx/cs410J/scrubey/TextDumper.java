@@ -6,11 +6,16 @@ import java.io.File;
 import java.io.FileWriter;
 
 public class TextDumper implements PhoneBillDumper<PhoneBill> {
+
+    /**
+     * Creates a phonebill text file from current bill object
+     * @param bill the current <code>PhoneBill</code>
+     * @throws IOException
+     */
     public void dump(PhoneBill bill) throws IOException{
         String customer = bill.getCustomer();
         File file = new File("/Users/srubey/PortlandStateJavaSummer2020/phonebill/src/main/resources/edu/pdx/cs410J/scrubey/"
                                         + Project2.getFileName());
-//        File file = new File(Project2.getFileName());
         FileWriter writer = null;
 
         try{
