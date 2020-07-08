@@ -14,7 +14,7 @@ public class TextParser implements PhoneBillParser<PhoneBill> {
         InputStream file;
 
         try {
-            file = Project2.class.getResourceAsStream("PhoneBill.txt");
+            file = Project2.class.getResourceAsStream(Project2.getFileName());
             reader = new BufferedReader(new InputStreamReader(file));
 
             //parse customer's name, create new bill object under that name

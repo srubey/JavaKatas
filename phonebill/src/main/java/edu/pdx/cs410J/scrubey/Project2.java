@@ -14,6 +14,8 @@ import java.util.Set;
  * and error checking.
  */
 public class Project2 {
+  protected static String fileName;
+
   /**
    * Main program that parses the command line, creates a
    * <code>PhoneBill</code> and <code>PhoneCall</code>, and
@@ -28,7 +30,6 @@ public class Project2 {
     PhoneCall call = null;
     boolean passErrChk = true;
     boolean textFileFlagPresent = false;
-    String fileName = null;
 
     //split CL args into arguments and options
     CLargsToLists(args, CLargs, CLopts);
@@ -734,5 +735,12 @@ public class Project2 {
       flagPresent = true;
 
     return flagPresent;
+  }
+
+  /**
+   * @return the filename entered by the user
+   */
+  public static String getFileName(){
+    return fileName;
   }
 }

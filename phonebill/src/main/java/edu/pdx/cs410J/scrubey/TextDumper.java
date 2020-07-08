@@ -8,8 +8,9 @@ import java.io.FileWriter;
 public class TextDumper implements PhoneBillDumper<PhoneBill> {
     public void dump(PhoneBill bill) throws IOException{
         String customer = bill.getCustomer();
-        File file = new File("/Users/srubey/PortlandStateJavaSummer2020/phonebill/src/main/resources/edu/pdx/cs410J/scrubey/PhoneBill.txt");
-//        File file = new File("PhoneBill.txt");
+        File file = new File("/Users/srubey/PortlandStateJavaSummer2020/phonebill/src/main/resources/edu/pdx/cs410J/scrubey/"
+                                        + Project2.getFileName());
+//        File file = new File(Project2.getFileName());
         FileWriter writer = null;
 
         try{
@@ -34,7 +35,7 @@ public class TextDumper implements PhoneBillDumper<PhoneBill> {
                 if(sd.length() < 10)
                     writer.write("\t");
 
-                writer.write("\t" + st + "\t\t" + ed + "\t" + et);
+                writer.write("\t" + st + "\t\t" + ed + "\t" + et + "\n");
             }
 
             file.createNewFile();
