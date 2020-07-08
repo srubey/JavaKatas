@@ -320,13 +320,19 @@ public class Project2Test {
 
   @Test
   public void testForOptionErrors(){
-    ArrayList<String> twoGoodOpts = new ArrayList<>(Arrays.asList("-README", "-print"));
+    ArrayList<String> twoGood1 = new ArrayList<>(Arrays.asList("-README", "-print"));
+    ArrayList<String> twoGood2 = new ArrayList<>(Arrays.asList("-README", "-textFile"));
+    ArrayList<String> twoGood3 = new ArrayList<>(Arrays.asList("-print", "-textFile"));
+    ArrayList<String> threeGood = new ArrayList<>(Arrays.asList("-README", "-textFile", "-print"));
     ArrayList<String> twoOptsFirstBad = new ArrayList<>(Arrays.asList("-REDME", "-print"));
     ArrayList<String> twoOptsSecondBad = new ArrayList<>(Arrays.asList("-README", "-prin"));
     ArrayList<String> oneGoodOpt = new ArrayList<>(Arrays.asList("-README"));
     ArrayList<String> oneBadOpt = new ArrayList<>(Arrays.asList("-pint"));
 
-    assertThat(Project2.chkOptsForErrors(twoGoodOpts), equalTo(true));
+    assertThat(Project2.chkOptsForErrors(twoGood1), equalTo(true));
+    assertThat(Project2.chkOptsForErrors(twoGood2), equalTo(true));
+    assertThat(Project2.chkOptsForErrors(twoGood3), equalTo(true));
+    assertThat(Project2.chkOptsForErrors(threeGood), equalTo(true));
     assertThat(Project2.chkOptsForErrors(twoOptsFirstBad), equalTo(false));
     assertThat(Project2.chkOptsForErrors(twoOptsSecondBad), equalTo(false));
     assertThat(Project2.chkOptsForErrors(oneGoodOpt), equalTo(true));

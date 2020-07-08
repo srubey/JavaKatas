@@ -170,9 +170,13 @@ public class Project2 {
     boolean flagsOK = false;
 
     //check for misspelled/improper arguments
-    if((options.size() == 2) && (options.contains("-README") && (options.contains("-print"))))
+    if(options.size() == 3 && (options.contains("-README") && options.contains("-print") && options.contains("-textFile")))
       flagsOK = true;
-    else if((options.size() == 1) && (options.contains("-README") || (options.contains("-print"))))
+    else if(options.size() == 2 && ((options.contains("-README") && options.contains("-print")) ||
+                                    (options.contains("-README") && options.contains("-textFile")) ||
+                                    (options.contains("-print") && options.contains("-textFile"))))
+      flagsOK = true;
+    else if(options.size() == 1 && (options.contains("-README") || options.contains("-print") || options.contains("-textFile")))
       flagsOK = true;
 
     return flagsOK;
