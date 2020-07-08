@@ -22,12 +22,12 @@ public class Project2IT extends InvokeMainTestCase {
     /**
     * Tests that invoking the main method with no arguments issues an error
     */
-    @Test
+/*    @Test
     public void testNoCommandLineArguments() {
         MainMethodResult result = invokeMain("");
         assertThat(result.getExitCode(), equalTo(1));
         assertThat(result.getTextWrittenToStandardError(), containsString("Incorrect number of command line arguments"));
-    }
+    }  */
 
     @Test
     public void testFewerThan7CommandLineArguments(){

@@ -27,7 +27,7 @@ public class TextParserTest {
         try {
             file = Project2.class.getResourceAsStream("PhoneBill.txt");
             reader = new BufferedReader(new InputStreamReader(file));
-            assertThat(parser.parseCustomer(reader), equalTo("Scott Rubey"));
+            assertThat(parser.parseCustomer(reader), equalTo("Joe Schmoe"));
             reader.close();
         } catch(IOException e){
             System.out.print("\nFile not found");
