@@ -114,7 +114,7 @@ public class Project2 {
         //verify customer name on text file is same as customer name on command line
         //if not, print error message and exit
         if (!bill.getCustomer().equals(custName)) {
-          System.out.print("\nCustomer name entered does not match customer name on phone bill\n");
+          System.err.println("\nCustomer name entered does not match customer name on phone bill\n");
           System.exit(1);
         }
       }

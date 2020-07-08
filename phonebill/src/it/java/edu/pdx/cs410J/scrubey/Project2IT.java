@@ -81,4 +81,17 @@ public class Project2IT extends InvokeMainTestCase {
 
         assertThat(result.getExitCode(), equalTo(0));
     }
+
+    @Test
+    public void testTextFileFlagPresent(){
+        MainMethodResult goodResult = invokeMain("-print", "-textFile", "PhoneBill.txt", "Joe Schmoe", "123-456-7890",
+                                                    "098-765-4321", "01/25/2020", "19:35", "01/31/2020", "23:30");
+        MainMethodResult badResult = invokeMain("-print", "-textFile", "PhoneBill.txt", "Customer Name", "123-456-7890",
+                                                     "098-765-4321", "01/25/2020", "19:35", "01/31/2020", "23:30");
+
+        assertThat(goodResult.getExitCode(), equalTo(0));
+        assertThat(badResult.getExitCode(), equalTo(1));
+        assertThat(badResult.getTextWrittenToStandardError(),
+                containsString("Customer name entered does not match customer name on phone bill"));
+    }
 }
