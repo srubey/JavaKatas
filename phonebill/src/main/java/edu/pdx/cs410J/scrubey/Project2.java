@@ -24,9 +24,11 @@ public class Project2 {
   public static void main(String[] args) throws IOException, ParserException {
     ArrayList<String> CLargs = new ArrayList<>();  //command line arguments list
     ArrayList<String> CLopts = new ArrayList<>();  //command line options list
+    PhoneBill bill = null;
+    PhoneCall call = null;
     boolean passErrChk = true;
     boolean textFileFlagPresent = false;
-    String filePath = null;
+    String fileName = null;
 
     //split CL args into arguments and options
     CLargsToLists(args, CLargs, CLopts);
@@ -42,7 +44,7 @@ public class Project2 {
 
     //if -textfile flag is present, remove path argument from CLargs and return it
     if(textFileFlag(CLopts)){
-      filePath = getFileName(CLargs);
+      fileName = getFileName(CLargs);
       textFileFlagPresent = true;
     }
 
@@ -97,32 +99,36 @@ public class Project2 {
     String eDate = CLargs.get(5);
     String eTime = CLargs.get(6);
 
-    //create class objects
-    PhoneCall call = new PhoneCall(caller, callee, sDate, sTime, eDate, eTime);
-    PhoneBill bill = new PhoneBill(custName);
+    //create call object
+    call = new PhoneCall(caller, callee, sDate, sTime, eDate, eTime);
+//  bill = new PhoneBill(custName);
+//  bill.setFileName(fileName);
+    //add call to phone bill
+//      bill.addPhoneCall(call);
 
-    //add call info from CL args to current bill
-    bill.addPhoneCall(call);
 
-    //if -textFile flag is present, parse file if available, create new bill with CL args
+    TextParser parser = new TextParser();
+    TextDumper tDump = new TextDumper();
+
+    //if -textFile flag is present and file already exists, parse it, add call, write out
+    //if file doesn't already exist, create new bill with CL args and write out
     if(textFileFlagPresent) {
-      //create phone bill text file
-      TextDumper tDump = new TextDumper();
-      tDump.dump(bill);
+      if(parser.fileExists(fileName)) {
+        bill = parser.parse();
 
-      //add call to phone bill
-      bill.addPhoneCall(call);
-
-      //store info in data file as PhoneBill object
-      TextParser parser = new TextParser();
-      PhoneBill parsedBill = parser.parse();
-
-      //verify customer name on text file is same as customer name on command line
-      //if not, print error message and exit
-      if (!parsedBill.getCustomer().equals(custName)) {
-        System.out.print("\nCustomer name entered does not match customer name on phone bill\n");
-        System.exit(1);
+        //verify customer name on text file is same as customer name on command line
+        //if not, print error message and exit
+        if (!bill.getCustomer().equals(custName)) {
+          System.out.print("\nCustomer name entered does not match customer name on phone bill\n");
+          System.exit(1);
+        }
       }
+      else
+        bill = new PhoneBill(custName);
+
+      //add call and write out
+      bill.addPhoneCall(call);
+      tDump.dump(bill);
     }
 
     //print call info if -print flag is present

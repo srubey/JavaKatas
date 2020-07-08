@@ -42,4 +42,14 @@ public class TextParserTest {
         assertThat(parser.chkArgFormatting(bad1), equalTo(false));
         assertThat(parser.chkArgFormatting(bad2), equalTo(false));
     }
+
+    @Test
+    public void testFileExists(){
+        TextParser parser = new TextParser();
+        String goodFileName = "PhoneBill.txt";
+        String badFileName = ("MyFile.txt");
+
+        assertThat(parser.fileExists(goodFileName), equalTo(true));
+        assertThat(parser.fileExists(badFileName), equalTo(false));
+    }
 }

@@ -165,4 +165,13 @@ public class TextParser implements PhoneBillParser<PhoneBill> {
         PhoneCall call = new PhoneCall(caller, callee, startDate, startTime, endDate, endTime);
         bill.addPhoneCall(call);
     }
+
+    public boolean fileExists(String fileName){
+        InputStream file = Project2.class.getResourceAsStream(fileName);
+
+        if(file == null)
+            return false;
+
+        return true;
+    }
 }

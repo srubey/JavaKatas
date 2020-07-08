@@ -9,6 +9,7 @@ public class TextDumper implements PhoneBillDumper<PhoneBill> {
     public void dump(PhoneBill bill) throws IOException{
         String customer = bill.getCustomer();
         File file = new File("/Users/srubey/PortlandStateJavaSummer2020/phonebill/src/main/resources/edu/pdx/cs410J/scrubey/PhoneBill.txt");
+//        File file = new File("PhoneBill.txt");
         FileWriter writer = null;
 
         try{
