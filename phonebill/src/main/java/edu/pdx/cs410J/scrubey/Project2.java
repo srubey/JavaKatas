@@ -25,6 +25,7 @@ public class Project2 {
     ArrayList<String> CLargs = new ArrayList<>();  //command line arguments list
     ArrayList<String> CLopts = new ArrayList<>();  //command line options list
     boolean passErrChk = true;
+    boolean textFileFlagPresent = false;
     String filePath = null;
 
     //split CL args into arguments and options
@@ -42,6 +43,7 @@ public class Project2 {
     //if -textfile flag is present, remove path argument from CLargs and return it
     if(textFileFlag(CLopts)){
       filePath = getFileName(CLargs);
+      textFileFlagPresent = true;
     }
 
     //print error message if incorrect number of CL arguments
@@ -102,22 +104,25 @@ public class Project2 {
     //add call info from CL args to current bill
     bill.addPhoneCall(call);
 
-    //create phone bill text file
-    TextDumper tDump = new TextDumper();
-    tDump.dump(bill);
+    //if -textFile flag is present, parse file if available, create new bill with CL args
+    if(textFileFlagPresent) {
+      //create phone bill text file
+      TextDumper tDump = new TextDumper();
+      tDump.dump(bill);
 
-    //add call to phone bill
-    bill.addPhoneCall(call);
+      //add call to phone bill
+      bill.addPhoneCall(call);
 
-    //store info in data file as PhoneBill object
-    TextParser parser = new TextParser();
-    PhoneBill parsedBill = parser.parse();
+      //store info in data file as PhoneBill object
+      TextParser parser = new TextParser();
+      PhoneBill parsedBill = parser.parse();
 
-    //verify customer name on text file is same as customer name on command line
-    //if not, print error message and exit
-    if(!parsedBill.getCustomer().equals(custName)){
-      System.out.print("\nCustomer name entered does not match customer name on phone bill\n");
-      System.exit(1);
+      //verify customer name on text file is same as customer name on command line
+      //if not, print error message and exit
+      if (!parsedBill.getCustomer().equals(custName)) {
+        System.out.print("\nCustomer name entered does not match customer name on phone bill\n");
+        System.exit(1);
+      }
     }
 
     //print call info if -print flag is present
