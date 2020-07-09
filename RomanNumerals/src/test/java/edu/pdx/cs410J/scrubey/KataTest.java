@@ -15,9 +15,14 @@ public class KataTest
   @Test
   public void checkForThousands(){
     Kata kata = new Kata();
-    int input = 2158;
+    int input = 2668;
 
-    assertThat(kata.intToRomanNum(input), equalTo("MM"));
+    assertThat(kata.intToRomanNum(input), equalTo("MMDCLXVIII"));
   }
-
+  @Test
+  public void checkForTwoThousands(){
+    Kata kata = new Kata();
+    int input = 2001;
+    assertThat(kata.intToRomanNum(input), equalTo("MMI"));
+  }
 }
