@@ -13,4 +13,16 @@ public class Kata {
     System.err.println("Missing command line arguments");
     System.exit(1);
   }
+
+  public String intToRomanNum(int input){
+    StringBuilder sb = new StringBuilder();
+
+    while (input - 1000 > 0) {
+      sb.append("M");
+      input -= 1000;
+    }
+
+
+    return sb.toString();
+  }
 }
