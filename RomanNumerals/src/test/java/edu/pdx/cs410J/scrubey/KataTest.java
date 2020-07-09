@@ -25,4 +25,11 @@ public class KataTest
     int input = 2001;
     assertThat(kata.intToRomanNum(input), equalTo("MMI"));
   }
+
+  @Test
+  public void checkForFiveHundred(){
+    Kata kata = new Kata();
+    int input = 591;
+    assertThat(kata.intToRomanNum(input), equalTo("DXCI"));
+  }
 }
