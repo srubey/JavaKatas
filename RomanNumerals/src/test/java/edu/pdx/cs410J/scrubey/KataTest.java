@@ -22,7 +22,13 @@ public class KataTest
   @Test
   public void checkForTwoThousands(){
     Kata kata = new Kata();
-    int input = 2001;
-    assertThat(kata.intToRomanNum(input), equalTo("MMI"));
+    int input = 2449;
+    assertThat(kata.intToRomanNum(input), equalTo("MMCDXLIX"));
+  }
+  @Test
+  public void checkForBiggest(){
+    Kata kata = new Kata();
+    int input = 2999;
+    assertThat(kata.intToRomanNum(input), equalTo("MMCMXCIX"));
   }
 }
