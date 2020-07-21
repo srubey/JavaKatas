@@ -87,4 +87,87 @@ public class KataTest
     int input = 591;
     assertThat(kata.intToRomanNum(input), equalTo("DXCI"));
   }
+
+  @Test
+  public void checkTens(){
+    Kata k = new Kata();
+    String input ="X";
+    assertThat(k.romanToNumber(input),equalTo(10));
+  }
+
+  @Test
+  public void checkForThousandsNum(){
+    Kata kata = new Kata();
+    String input = "MMMI";
+
+    assertThat(kata.romanToNumber(input), equalTo(3001));
+  }
+  @Test
+  public void checkForTwoThousandsNum(){
+    Kata kata = new Kata();
+    String input = "MMCDXLIX";
+    assertThat(kata.romanToNumber(input), equalTo(2449));
+  }
+  @Test
+  public void checkForBiggestNum(){
+    Kata kata = new Kata();
+    String input = "MMCMXCIX";
+    assertThat(kata.romanToNumber(input), equalTo(2999));
+  }
+
+  @Test
+  public void checkFor1Num(){
+    Kata kata = new Kata();
+    String input = "I";
+    assertThat(kata.romanToNumber(input), equalTo(1));
+  }
+
+  @Test
+  public void checkFor5Num(){
+    Kata kata = new Kata();
+    String input = "V";
+    assertThat(kata.romanToNumber(input), equalTo(5));
+  }
+
+  @Test
+  public void checkFor10NUM(){
+    Kata kata = new Kata();
+    String input = "X";
+    assertThat(kata.romanToNumber(input), equalTo(10));
+  }
+
+  @Test
+  public void checkFor50Num(){
+    Kata kata = new Kata();
+    String input = "L";
+    assertThat(kata.romanToNumber(input), equalTo(50));
+  }
+
+  @Test
+  public void checkFor100Num(){
+    Kata kata = new Kata();
+    String input = "C";
+    assertThat(kata.romanToNumber(input), equalTo(100));
+  }
+
+  @Test
+  public void checkFor500Num(){
+    Kata kata = new Kata();
+    String input = "D";
+    assertThat(kata.romanToNumber(input), equalTo(500));
+  }
+
+  @Test
+  public void checkFor1000Num(){
+    Kata kata = new Kata();
+    String input = "M";
+    assertThat(kata.romanToNumber(input), equalTo(1000));
+  }
+
+  @Test
+  public void checkForFiveHundredNum(){
+    Kata kata = new Kata();
+    String input = "DXCI";
+    assertThat(kata.romanToNumber(input), equalTo(591));
+  }
 }
